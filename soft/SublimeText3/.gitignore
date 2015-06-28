@@ -2,7 +2,18 @@
 !/Packages/
 /Packages/*
 !/Packages/Default/
-!/Packages/User/
+!/Packages/Autoprefixer/
+!/Packages/ConvertToUTF8/
+!/Packages/Emmet Css Snippets/
+!/Packages/HTML/
+!/Packages/IMESupport-master/
+!/Packages/Japanize/
+!/Packages/OmniMarkupPreviewer/
+!/Packages/PyV8/
+!/Packages/Rails/
+!/Packages/SFTP/
+!/Packages/SublimeCodeIntel/
+!/Packages/SublimeLinter/
 /Packages/User/encoding_cache.json
 /Packages/User/Package Control.cache/
 /Packages/User/Package Control.ca-bundle
