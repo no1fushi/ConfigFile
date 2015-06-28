@@ -1,0 +1,50 @@
+{
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"AutoFileName",
+		"Autoprefixer",
+		"CloseCommentTag",
+		"Color Highlighter",
+		"ColorPicker",
+		"ConvertToUTF8",
+		"CSS Snippets",
+		"CSS3",
+		"Emmet",
+		"Emmet Css Snippets",
+		"ExportHtml",
+		"Git",
+		"GitGutter",
+		"Github Tools",
+		"HTML5",
+		"Japanize",
+		"LESS",
+		"LESS-build",
+		"LiveStyle",
+		"Markdown Extended",
+		"Markmon real-time markdown preview",
+		"Monokai Extended",
+		"OmniMarkupPreviewer",
+		"Package Control",
+		"Phpcs",
+		"Sass",
+		"SASS Build",
+		"SFTP",
+		"SideBarEnhancements",
+		"sublime-github",
+		"SublimeCodeIntel",
+		"SublimeGit",
+		"sublimelint",
+		"SublimeLinter",
+		"SublimeLinter-phplint",
+		"SublimeLinter-ruby",
+		"SublimeServer",
+		"Tag",
+		"Theme - Nil",
+		"TrailingSpaces"
+	],
+	"repositories":
+	[
+		"https://github.com/shime/sublime-livedown"
+	]
+}
