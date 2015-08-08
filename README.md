@@ -16,7 +16,7 @@
 
 #####kakushi.bat  
 		隠しフォルダを作る  
-#####no1fushi.com.bat  
+#####testserver.bat  
 		vagrantを楽にする?  
 #####sudo.bat  
 		runasをどうしてもsudoにしたかっただけ　　
