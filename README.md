@@ -1,4 +1,4 @@
-## 【紹介】
+﻿## 【紹介】
 主に様々なマシンで共有するために  
 設定ファイルやbat,shell scriptなどを置いていきます  
 
@@ -16,6 +16,8 @@
 
 #####kakushi.bat  
 		隠しフォルダを作る  
+#####no1fushi.com.bat  
+		vagrantを楽にする?  
 #####sudo.bat  
 		runasをどうしてもsudoにしたかっただけ　　
 ####**- sh -**  
