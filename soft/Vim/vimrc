@@ -294,6 +294,7 @@ fi
 NeoBundle "shougo/neosnippet"
 NeoBundle "shougo/neosnippet-snippets"
 NeoBundle "honza/vim-snippets"
+NeoBundle 'sudo.vim'
 endif
 
 "未インストールチェック
