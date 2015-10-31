@@ -1,3 +1,3 @@
 @echo off
 
-runas /user:fushi %1
+runas /user:%username% %1

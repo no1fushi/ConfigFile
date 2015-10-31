@@ -1,5 +1,5 @@
 @echo off
-cd C:\Users\fushi\Vagrant\centos
+cd C:\Users\%username%\centos
 
 :loop
 set /P Select="up‚©halt‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢: "
