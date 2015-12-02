@@ -1,0 +1,365 @@
+/*
+ * Copyright (c) 2012 Adobe Systems Incorporated. All rights reserved.
+ *  
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+ *  
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *  
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+ * DEALINGS IN THE SOFTWARE.
+ * 
+ */
+
+.edge-web-fonts-browse-dialog .modal-body {
+    width: 520px;
+    padding: 15px 0 15px 15px;
+    overflow: hidden;
+}
+.edge-web-fonts div {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+
+  box-sizing: border-box;
+}
+.edge-web-fonts .ewf-picker {
+  position: static;
+  width: 100%;
+}
+.edge-web-fonts .ewf-picker .ewf-side-bar {
+  float: left;
+  clear: both;
+}
+.edge-web-fonts .ewf-picker .ewf-search-fonts {
+  width: 503px;
+  float: left;
+  clear: both;
+  margin-top: 10px;
+  margin-bottom: 12px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 30px;
+  height: 32px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.48);
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+
+  box-sizing: border-box;
+  color: #454545;
+  font-weight: 500;
+}
+.edge-web-fonts .ewf-picker button {
+  padding: 0;
+}
+.edge-web-fonts .ewf-tabs button:hover {
+  background: #dce1e4;
+  background-position: 0 -30px;
+}
+.edge-web-fonts .ewf-tabs button.selected {
+  background: #bdbdbd;
+}
+.edge-web-fonts .ewf-tabs button:focus {
+    outline-style: none;
+    background-color: #ccc;
+}
+.edge-web-fonts .ewf-tabs button.selected:focus {
+  background: #aaa;
+}
+.edge-web-fonts .ewf-picker .ewf-button {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.48) inset;
+  border: 1px solid #a6a8a8;
+  background: #dbddde;
+  border-radius: 3px;
+  width: 33px;
+  height: 33px;
+}
+.edge-web-fonts .ewf-picker .ewf-button:disabled {
+  background-position: -30px 0;
+}
+.edge-web-fonts .ewf-picker ul {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 18px;
+}
+.edge-web-fonts .ewf-picker li {
+  list-style: none;
+  height: 30px;
+}
+.edge-web-fonts .ewf-picker li button {
+  border: 1px solid #b4b6b5;
+  background: #dbddde;
+  width: 33px;
+  height: 33px;
+}
+.edge-web-fonts .ewf-picker li:first-child button {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.48) inset;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.edge-web-fonts .ewf-picker li:last-child button {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.edge-web-fonts .ewf-picker .ewf-icon {
+  padding: 0;
+  margin: 0 auto;
+  width: 120px;
+  height: 60px;
+}
+.edge-web-fonts .ewf-picker .ewf-icon:disabled {
+  background-position: -30px 0;
+}
+.edge-web-fonts .ewf-picker .divider {
+  display: none;
+}
+.edge-web-fonts .ewf-picker .divider-left {
+  margin: 0px 0px 0px 9px;
+  background-image: -webkit-linear-gradient(top, rgba(169, 169, 169, 0) 0%, #a9a9a9 50%, rgba(169, 169, 169, 0) 100%, #a9a9a9 50%, rgba(169, 169, 169, 0) 0%);
+  display: none;
+}
+.edge-web-fonts .ewf-picker .divider-right {
+  margin: 0px 9px 0px 0px;
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, #ffffff 50%, rgba(255, 255, 255, 0) 100%, #ffffff 50%, rgba(255, 255, 255, 0) 0%);
+  display: none;
+}
+.edge-web-fonts .ewf-picker .ewf-results {
+  position: absolute;
+  bottom: 0px;
+  left: 50px;
+  width: 485px;
+  height: 335px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.edge-web-fonts .ewf-picker .ewf-font {
+  position: relative;
+  float: left;
+  width: 102px;
+  height: 120px;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  background-repeat: no-repeat;
+  border: 1px solid #b4b6b5;
+  border-radius: 3px;
+  background-color: white;
+  background-position: 50% -20px;
+  cursor: pointer;
+}
+.edge-web-fonts .ewf-picker .ewf-font:focus,
+.edge-web-fonts .ewf-picker .ewf-font.selected {
+  outline: none;
+  border: 1px solid #288EDF;
+}
+.edge-web-fonts .ewf-picker .ewf-font-details {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100px;
+  padding: 6px;
+  background-color: #e5e8e7;
+  border-top: 1px solid #b4b6b5;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  overflow: hidden;
+}
+.edge-web-fonts .ewf-picker .ewf-font-details label {
+  position: relative;
+  font-size: 12px;
+  text-shadow: 0 1px 0 #fff;
+  width: auto;
+  text-align: left;
+  line-height: normal;
+  padding-top: 0px;
+  overflow-x: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.edge-web-fonts .ewf-picker .wait {
+  top: 250px;
+  left: 300px;
+}
+
+/**
+ *  Retina-ized icons for browser interface
+ */
+
+.edge-web-fonts .ewf-picker .ewf-search-fonts {
+    background-image: -webkit-image-set(url("../img/fonts_search.png") 1x, url("../img/fonts_search@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .serif {
+    background-image: -webkit-image-set(url("../img/fonts_serif.png") 1x, url("../img/fonts_serif@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .sans-serif {
+    background-image: -webkit-image-set(url("../img/fonts_sans-serif.png") 1x, url("../img/fonts_sans-serif@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .slab-serif {
+    background-image: -webkit-image-set(url("../img/fonts_slab-serif.png") 1x, url("../img/fonts_slab-serif@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .script {
+    background-image: -webkit-image-set(url("../img/fonts_script.png") 1x, url("../img/fonts_script@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .blackletter {
+    background-image: -webkit-image-set(url("../img/fonts_blackletter.png") 1x, url("../img/fonts_blackletter@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .monospaced {
+    background-image: -webkit-image-set(url("../img/fonts_mono-spaced.png") 1x, url("../img/fonts_mono-spaced@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .handmade {
+    background-image: -webkit-image-set(url("../img/fonts_handwritten.png") 1x, url("../img/fonts_handwritten@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .decorative {
+    background-image: -webkit-image-set(url("../img/fonts_decorative.png") 1x, url("../img/fonts_decorative@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .paragraphs {
+    background-image: -webkit-image-set(url("../img/fonts_paragraphs.png") 1x, url("../img/fonts_paragraphs@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+.edge-web-fonts .ewf-picker .headings {
+    background-image: -webkit-image-set(url("../img/fonts_headlines.png") 1x, url("../img/fonts_headlines@2x.png") 2x);
+    background-repeat: no-repeat;
+}
+
+
+/** 
+ *  Brackets-specific Dialog Styling
+ */
+.edge-web-fonts-browse-dialog {
+    width: 535px;
+}
+.edge-web-fonts-browse-dialog .modal-footer {
+  clear: both;
+}
+.edge-web-fonts-browse-dialog .ewf-terms-of-use,
+.edge-web-fonts-include-dialog .ewf-terms-of-use,
+.edge-web-fonts-howto-dialog .ewf-terms-of-use {
+  position: relative;
+  float: left;
+  top: 7px;
+  left: 3px;
+}
+.edge-web-fonts-include-dialog code {
+  color: #454545;
+  font-size: smaller;
+}
+.edge-web-fonts-include-dialog textarea {
+  width: 550px;
+  resize: none;
+  cursor: text;
+}
+.edge-web-fonts-howto-dialog ol {
+  font-size: 1.1em;
+}
+.edge-web-fonts-howto-dialog li {
+  color: #000;
+  font-weight: 200;    
+  margin-bottom: .4em;
+  list-style-position: outside;
+}
+.edge-web-fonts-howto-dialog .ewf-diagram {
+  width: 100%;
+  text-align: center;
+}
+.edge-web-fonts-howto-dialog .dialog-message {
+  margin-bottom: 0px;
+}
+.edge-web-fonts-howto-dialog .instructions-icon {
+    background: no-repeat url("../img/toolbar.svg");
+    background-position: 0 -24px; 
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-bottom: -7px;
+}
+
+.edge-web-fonts-howto-diagram {
+    width: 485px;
+    height: 164px;
+    margin: 15px 0px 15px 25px;
+    background-repeat: no-repeat;
+}
+
+/**
+ *  Brackets Toolbar Icon Styling
+ */
+#toolbar-ewf {
+  background: no-repeat url("../img/toolbar.svg");
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+#toolbar-ewf.active {
+    background-position: 0 -24px;
+}
+
+#toolbar-ewf.disabled {
+  opacity: 0.4;
+}
+
+/**
+ *  Brackets Code Hint Styling
+ */
+.dropdown.codehint-menu .ewf-codehint-addition {
+  font-style: italic;
+  padding-right: 70px;
+}
+
+.dropdown.codehint-menu .ewf-fontname {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    overflow: hidden;
+    width: 112px;
+}
+
+.dropdown.codehint-menu .ewf-fontsample {
+    padding-right: 10px;
+    float: right;
+    width: 30px;
+}
+
+
+.dropdown.codehint-menu .ewf-fontname .ewf-fontname-bold {
+    font-weight: 500;
+}
+
+.dropdown.codehint-menu.open .dropdown-menu.has-addition {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

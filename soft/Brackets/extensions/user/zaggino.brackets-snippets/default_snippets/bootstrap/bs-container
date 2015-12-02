@@ -1,0 +1,4 @@
+##lang: html
+<div class="container{{$1?:optionalClasses}}">
+  {{!cursor}}
+</div>

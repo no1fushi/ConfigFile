@@ -1,0 +1,25 @@
+<div class="snippets-question-dialog modal">
+    <div class="modal-header">
+        <h1 class="dialog-title">
+            {{ title }}
+        </h1>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ question }}
+        </p>
+        {{ #stringInput }}
+            <input class="stringInput" type="text" />
+        {{ /stringInput }}
+    </div>
+    <div class="modal-footer">
+        {{ #stringInput }}
+            <button class="dialog-button btn" data-button-id="cancel">{{Strings.CANCEL}}</button>
+            <button class="dialog-button btn primary" data-button-id="ok">{{Strings.OK}}</button>
+        {{ /stringInput }}
+        {{ #booleanInput }}
+            <button class="dialog-button btn" data-button-id="false">{{Strings.NO}}</button>
+            <button class="dialog-button btn primary" data-button-id="true">{{Strings.YES}}</button>
+        {{ /booleanInput }}
+    </div>
+</div>

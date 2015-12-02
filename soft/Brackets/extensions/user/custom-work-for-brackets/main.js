@@ -1,0 +1,1 @@
+define(["require", "exports", 'module', './sys/init'],function(require, exports, module){});
