@@ -32,3 +32,6 @@
 	いろいろな方のを参考にさせてもらってます。つまりコピペです。  
 #####SublimeText3  
 	SublimeText3のパッケージディレクトリ  
+#####node_webdev  
+	node,grupのweb開発環境  
+	これもいろいろな方のを参考。  
