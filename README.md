@@ -30,6 +30,8 @@
 #####vim
 	vimの設定ファイルvimrc。少しずつ育てていきます。  
 	いろいろな方のを参考にさせてもらってます。つまりコピペです。  
+#####bash  
+	bashrc
 #####SublimeText3  
 	SublimeText3のパッケージディレクトリ  
 #####node_webdev  

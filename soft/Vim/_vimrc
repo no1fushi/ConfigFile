@@ -227,32 +227,21 @@ let &guicursor = &guicursor . ",a:blinkon0"
 
 "プラグイン
 
-
 "NeoBundle
 
-
-"bundle管理ディレクトリ
-
-" neobundle settings {{{
 if has('vim_starting')
-  set nocompatible
-  " neobundle をインストールしていない場合は自動インストール
-  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    " vim からコマンド呼び出しているだけ neobundle.vim のクローン
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-  endif
-  " runtimepath の追加は必須
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+   " 初回起動時のみruntimepathにneobundleのパスを指定する
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#begin(expand('~/.vim/bundle'))
-let g:neobundle_default_git_protocol='https'
 
-"neobundleをneobundle管理
-NeoBundleFetch 'shougo/neobundle.vim'
+" NeoBundleを初期化
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-"プラグイン管理
+NeoBundleFetch 'Shougo/neobundle.vim'
 
+" インストールするプラグイン
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimfiler'
 "railscasts
 NeoBundle 'jpo/vim-railscasts-theme'
 "molokai
@@ -295,15 +284,13 @@ NeoBundle "shougo/neosnippet"
 NeoBundle "shougo/neosnippet-snippets"
 NeoBundle "honza/vim-snippets"
 NeoBundle 'sudo.vim'
-endif
-
-"未インストールチェック
-NeoBundleCheck
 
 call neobundle#end()
+
+NeoBundleCheck
+
+" ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
-
-
 
 "Neosnippet
 " <TAB>: completion.

@@ -1,68 +1,42 @@
-var gulp = require("gulp");
-var sass = require("gulp-sass");
-var autoprefixer = require("gulp-autoprefixer");
-var browser = require("browser-sync");
-var htmlhint = require("gulp-htmlhint");
-var csslint = require('gulp-csslint');
-var notify = require('gulp-notify');
+var gulp = require('gulp');
+var gutil = require('gulp-util');
+var ftp = require('vinyl-ftp');
+var gulp = require('gulp');
+var browserSync = require('browser-sync').create();
 
+//ftp
+var conn_config = {
+  host: 'hostname',
+  user: 'username',
+  password: 'password',
+  parallel: 5,
+  log: gutil.log
+}
+var remoteDest = '/';
+var globs = [
+  'uploadpath',
+];
 
+gulp.task('deploy', function(){
+  var conn = ftp.create(conn_config);
+  gulp.src(globs, {buffer: false, dot: true})
+    .pipe(conn.newerOrDifferentSize(remoteDest))
+    .pipe(conn.dest(remoteDest));
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var plumber = require("gulp-plumber");
- 
-
-gulp.task("server", function() {
-    browser({
+//liveload
+gulp.task('browser-sync', function() {
+    browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "src"
         }
     });
 });
-
-gulp.task("sass", function() {
-    gulp.src("sass/**/.scssÅh,"!sass/sample/**/*.scss")
-        .pipe(sass())
-	.pipe(autoprefixer())
-        .pipe(gulp.dest("./css"));
-        .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')} ))
-        .pipe(frontnote())
-	.pipe(browser.reload({stream:true}))
+ 
+gulp.task('bs-reload', function () {
+    browserSync.reload();
 });
 
-gulp.task("html", function() {
-    gulp.src('*.html')
-        .pipe(htmlhint())
-	.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')} ))
-        .pipe(htmlhint.reporter())
-});
-
-gulp.task("css", function() {
-    gulp.src('cmn/css/*.css')
-    	.pipe(csslint())
-    	.pipe(csslint.reporter());
-	.pipe(plumber({errorHandler: notify.onError('<%= error.message %>')} ))
-});
-
-gulp.task("default",['server'], function() {
-	gulp.watch("*.html"["html"]);
-	gulp.watch("*.css"["css"]);
-	gulp.watch("sass/**/*.scss",["sass"]);
+gulp.task('default', ['browser-sync'], function () {
+    gulp.watch("src", ['bs-reload']);
 });
