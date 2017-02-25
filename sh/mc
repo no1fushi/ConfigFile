@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "befor"
+free -m
+echo "run clear memory"
+sudo echo 3 > /proc/sys/vm/drop_caches
+echo "Done!"
+echo "after"
+free -m
