@@ -1,8 +1,0 @@
-#!/bin/sh newip=`wget -qO- forts.jp/ip`
-oldip=`cat /home/pi/script/tmp/old_ip.txt`
-if [ $oldip != $newip ]
-	then
-	echo "$newip" > /home/pi/script/tmp/old_ip.txt
-	mail -s "Current IP Address" no1fushi@gmal.com</home/pi/script/tmp/old_ip.txt
-	fi
-	
