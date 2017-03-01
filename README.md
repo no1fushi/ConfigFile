@@ -15,25 +15,27 @@
 ####**- bat -**  
 
 #####kakushi.bat  
-		隠しフォルダを作る  
+		Make Hidden folder  
 #####testserver.bat  
-		vagrantを楽にする?  
+		vagrant  
 #####sudo.bat  
-		runasをどうしてもsudoにしたかっただけ　　
+		runasをどうしてもsudoにしたかっただけ  　
 ####**- sh -**  
 
-#####dev.sh
-	serviceをまとめていく
+#####Hello  
+		Output "HelloWorld"  
+#####mc
+		Memory Clean  
 
 ####**- soft -**  
 
 #####vim
-	vimの設定ファイルvimrc。少しずつ育てていきます。  
-	いろいろな方のを参考にさせてもらってます。つまりコピペです。  
+		vimの設定ファイルvimrc。少しずつ育てていきます。  
+		いろいろな方のを参考にさせてもらってます。つまりコピペです。  
 #####bash  
-	bashrc
+		bashrc,bash_profile  
 #####SublimeText3  
-	SublimeText3のパッケージディレクトリ  
+		SublimeText3のパッケージディレクトリ  
 #####node_webdev  
-	node,grupのweb開発環境  
-	これもいろいろな方のを参考。  
+		node,grupのweb開発環境  
+		これもいろいろな方のを参考。  
