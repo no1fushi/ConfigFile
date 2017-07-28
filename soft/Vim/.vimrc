@@ -64,17 +64,29 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "----------------------------------------------------------
 "plugins
 NeoBundle 'tomasr/molokai'
+NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'Yggdroot/indentLine'
 "----------------------------------------------------------
 call neobundle#end()
 NeoBundleCheck
 
 filetype plugin indent on
 
+"---------------------------------------------------------
+"plugins set
+
 " molokai
 if neobundle#is_installed('molokai')
     colorscheme molokai
 endif
 
-set t_Co=256 " iTerm2など既に256色環境なら無くても良い
-syntax enable " 構文に色を付ける
+set t_Co=256
+syntax enable
+
+"lightline
+set laststatus=2
+set showmode
+set showcmd
+set ruler 
 
