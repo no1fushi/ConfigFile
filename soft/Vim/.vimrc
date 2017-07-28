@@ -43,18 +43,38 @@ set wildmode=list:longest
 
 "custom
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
-if &term =~ "xterm"
-	let &t_SI .= "\e[?2004h"
-	let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-	
-	function XTermPasteBegin(ret)
-		set paste
-		return a:ret
-	endfunction
-
-	inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
 
 "color
 syntax on
+
+"plugins
+if has('vim_starting')
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
+
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+        echo "install NeoBundle..."
+        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+    endif
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+"----------------------------------------------------------
+"plugins
+NeoBundle 'tomasr/molokai'
+"----------------------------------------------------------
+call neobundle#end()
+NeoBundleCheck
+
+filetype plugin indent on
+
+" molokai
+if neobundle#is_installed('molokai')
+    colorscheme molokai
+endif
+
+set t_Co=256 " iTerm2など既に256色環境なら無くても良い
+syntax enable " 構文に色を付ける
+
