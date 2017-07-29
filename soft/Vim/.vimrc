@@ -43,6 +43,7 @@ set wildmode=list:longest
 
 "custom
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
+cnoremap gosh GoshREPLWithBuffer
 
 "color
 syntax on
@@ -62,11 +63,21 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "----------------------------------------------------------
-"plugins
+"set
 NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Yggdroot/indentLine'
+"gosh
+NeoBundle 'aharisu/vim_goshrepl'
+NeoBundle 'aharisu/vim-gdev'
+NeoBundle 'Shougo/vimproc.vim'
+"ruby
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'szw/vim-tags'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'marcus/rsense'
+
 "----------------------------------------------------------
 call neobundle#end()
 NeoBundleCheck
@@ -89,4 +100,8 @@ set laststatus=2
 set showmode
 set showcmd
 set ruler 
+
+" Rsense
+let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+let g:rsenseUseOmniFunc = 1
 
