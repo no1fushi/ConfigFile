@@ -78,6 +78,18 @@ NeoBundle 'szw/vim-tags'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'marcus/rsense'
 
+"html
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'hokaccha/vim-html5validator'
+
+"css
+NeoBundle 'hail2u/vim-css3-syntax'
+
+"javascript
+NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'jiangmiao/simple-javascript-indenter'
+
 "----------------------------------------------------------
 call neobundle#end()
 NeoBundleCheck
@@ -105,3 +117,5 @@ set ruler
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
 
+"emmet
+let g:user_emmet_settings = { 'lang' : 'ja'}
