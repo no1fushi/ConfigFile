@@ -1,3 +1,9 @@
+(tool-bar-mode 0)
+(menu-bar-mode -1)
+(setq c-auto-newline t) 
+(setq c-tab-always-indent t)
+(setq inhibit-startup-message t)
+
 (global-set-key "\C-h" 'delete-backward-char)
 (setq auto-save-default nil)
 (setq make-backup-files nil)
@@ -7,6 +13,7 @@
 (global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
 (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
 (setq skeleton-pair 1)
+
 
 ;;gauche
 (setq process-coding-system-alist
