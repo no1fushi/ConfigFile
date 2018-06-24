@@ -42,7 +42,7 @@ if [ "$do" == "yes" ] || [ "$do" == "y" ] || [ "$do" == "YES" ] || [ "$do" == "Y
 	yes | sudo apt-get install fortune
 
 #Ruby
-	yes | sudo apt-get install gcc-6 autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+	yes | sudo apt-get install gcc autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 	sudo git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 	sudo chmod a=rwx .rbenv
 	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
