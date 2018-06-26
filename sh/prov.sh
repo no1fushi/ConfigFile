@@ -7,7 +7,7 @@ echo "These questions are set to no by default"
 
 echo "Will modify the files that think are necessary and install the software"
 read -p "Do you allow it? [yes/no]: " do
-if [ "$do" == "yes" ] || [ "$do" == "y" ] || [ "$do" == "YES" ] || [ "$do" == "Y" ] || [ "$do" == "Yes" ]; then
+if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do = "Yes" ]; then
 
 	read -p "Do you want ssh-keygen? [yes/no]: " ssh
 	read -p "Do you want to install Libsodium? [yes/no]: " libsodium
@@ -24,7 +24,7 @@ if [ "$do" == "yes" ] || [ "$do" == "y" ] || [ "$do" == "YES" ] || [ "$do" == "Y
 	yes | sudo apt-get update
 
 	#ssh
-	if [ "$ssh" == "yes" ] || [ "$ssh" == "y" ] || [ "$ssh" == "YES" ] || [ "$ssh" == "Y" ] || [ "$ssh" == "Yes" ]; then
+	if [ $ssh = "yes" ] || [ $ssh = "y" ] || [ $ssh = "YES" ] || [ $ssh = "Y" ] || [ $ssh = "Yes" ]; then
 		ssh-keygen -t rsa
 		mv ~/id_rsa.pub ~/.ssh/authorized_keys
 		chmod 600 ~/.ssh/authorized_keys
@@ -66,7 +66,7 @@ if [ "$do" == "yes" ] || [ "$do" == "y" ] || [ "$do" == "YES" ] || [ "$do" == "Y
 	yes | gem install discordrb gmail net-ping bigdecimal
 
 #Libsodium
-	if [ "$libsodium" == "yes" ] || [ "$libsodium" == "y" ] || [ "$libsodium" == "YES" ] || [ "$libsodium" == "Y" ] || [ "$libsodium" == "Yes" ]; then
+	if [ $libsodium = "yes" ] || [ $libsodium = "y" ] || [ $libsodium = "YES" ] || [ $libsodium = "Y" ] || [ $libsodium = "Yes" ]; then
 		wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.15.tar.gz	tar -zxvf libsodium-1.0.15.tar.gz
 		rm -rf libsodium-1.0.15.tar.gz
 		cd libsodium-1.0.15
@@ -77,7 +77,7 @@ if [ "$do" == "yes" ] || [ "$do" == "y" ] || [ "$do" == "YES" ] || [ "$do" == "Y
 		rm -rf libsodium-1.0.15/
 	fi
 #Joke
-if [ "$joke" == "yes" ] || [ "$joke" == "y" ] || [ "$joke" == "YES" ] || [ "$joke" == "Y" ] || [ "$joke" == "Yes" ]; then
+if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] || [ $joke = "Yes" ]; then
 		yes | sudo apt-get install sl cowsay
 		yes | gem install cureutils matsuya
 		yes | gem install rubipara takarabako
@@ -107,7 +107,7 @@ fi
 	source ~/.bashrc
 
 #SetupFile
-	if [ "$script" == "yes" ] || [ "$script" == "y" ] || [ "$script" == "YES" ] || [ "$script" == "Y" ] || [ "$script" == "Yes" ]; then
+	if [ $script = "yes" ] || [ $script = "y" ] || [ $script = "YES" ] || [ $script = "Y" ] || [ $script = "Yes" ]; then
 		mkdir script
 		echo 'export PATH="$HOME/script:$PATH"' >> ~/.bash_profile
 		mkdir script/tmp/
