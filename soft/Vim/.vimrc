@@ -66,10 +66,17 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'scrooloose/nerdtree'
+
+"search
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'haya14busa/incsearch.vim'
+
 "gosh
 NeoBundle 'aharisu/vim_goshrepl'
 NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'Shougo/vimproc.vim'
+
 "ruby
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'szw/vim-tags'
@@ -110,6 +117,13 @@ set laststatus=2
 set showmode
 set showcmd
 set ruler 
+
+"NERDTREE
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+"incsearch.vim
+map / <Plug>(incsearch-forward)
 
 " Rsense
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
