@@ -37,7 +37,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	yes | sudo apt-get install vim emacs24
 
 #Tool
-	yes | sudo apt-get install tree curl
+	yes | sudo apt-get install tree curl traceroute
 	yes | sudo apt-get install git
 	yes | sudo apt-get install fortune
 
