@@ -7,10 +7,9 @@ echo "These questions are set to no by default"
 
 echo "Will modify the files that think are necessary and install the software"
 read -p "Do you allow it? [yes/no]: " do
-if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do = "Yes" ]; then
+if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do = "Yes" ];
 
 	read -p "Do you want ssh-keygen? [yes/no]: " ssh
-	read -p "Do you want to install Libsodium? [yes/no]: " libsodium
 	read -p "Do you want to install joke softwares? [yes/no]: " joke
 	read -p "Do you need a script created by no1fushi? [yes/no]: " script
 
@@ -29,17 +28,25 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 		mv ~/id_rsa.pub ~/.ssh/authorized_keys
 		chmod 600 ~/.ssh/authorized_keys
 	fi
+
 #Lang
 	yes | sudo apt-get install gcc gauche
-	yes | sudo apt-get install node npm
+	yes | sudo apt-get install nodejs npm
 
 #Editor
 	yes | sudo apt-get install vim emacs24
+
+#SetupEditor
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/Vim/.vimrc
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/emacs/init.el
+	mkdir .emacs.d
+	mv init.el ~/.emacs.d/
 
 #Tool
 	yes | sudo apt-get install tree curl traceroute
 	yes | sudo apt-get install git
 	yes | sudo apt-get install fortune
+	yes | sudo apt-get install tmux
 
 #Ruby
 	yes | sudo apt-get install gcc autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
@@ -63,19 +70,8 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	yes | sudo apt-get install g++ build-essential debian-keyring autoconf automake libtool flex bison scons git mongodb
 
 #GemPackages
-	yes | gem install discordrb gmail net-ping bigdecimal
+	yes | gem install discordrb gmail net-ping bigdecimal flumtter
 
-#Libsodium
-	if [ $libsodium = "yes" ] || [ $libsodium = "y" ] || [ $libsodium = "YES" ] || [ $libsodium = "Y" ] || [ $libsodium = "Yes" ]; then
-		wget https://download.libsodium.org/libsodium/releases/libsodium-1.0.15.tar.gz	tar -zxvf libsodium-1.0.15.tar.gz
-		rm -rf libsodium-1.0.15.tar.gz
-		cd libsodium-1.0.15
-		./configure
-		make && make check
-		sudo make install
-		cd
-		rm -rf libsodium-1.0.15/
-	fi
 #Joke
 if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] || [ $joke = "Yes" ]; then
 		yes | sudo apt-get install sl cowsay
@@ -83,24 +79,16 @@ if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] 
 		yes | gem install rubipara takarabako
 		yes | sudo npm install -g faker-cli emspect
 		yes | sudo apt-get install screenfetch
+		echo 'screenfetch' >> ~/.bash_profile
 fi
-
-#SetupEditor
-	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/Vim/.vimrc
-	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/emacs/init.el
-	mkdir .emacs.d
-	mv init.el ~/.emacs.d/
-	cd
 
 #Setup .bash_profile
 	echo 'source ~/.bashrc' >> ~/.bash_profile
 	echo 'echo -e "\n Disk capacity"' >> ~/.bash_profile
 	echo 'df -h' >> ~/.bash_profile
 	echo 'echo -e "\n"' >> ~/.bash_profile
-	echo 'screenfetch' >> ~/.bash_profile
 	echo 'echo -e "\n Users logged in at the same time"' >> ~/.bash_profile
 	echo 'w' >> ~/.bash_profile
-
 #Setup .bashrc
 	rm .bashrc
 	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bashrc
