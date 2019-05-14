@@ -47,12 +47,13 @@ cnoremap gosh GoshREPLWithBuffer
 syntax on
 
 "plugins
+:let g:neobundle_default_git_protocol='https'
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
         echo "install NeoBundle..."
-        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+        :call system("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
     endif
 endif
 
@@ -130,4 +131,4 @@ let g:rsenseHome = '/usr/local/lib/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
 
 "emmet
-let g:user_emmet_settings = { 'lang' : 'ja'}
+let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
