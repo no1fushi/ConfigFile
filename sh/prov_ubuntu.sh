@@ -7,7 +7,7 @@ echo "These questions are set to no by default"
 
 echo "Will modify the files that think are necessary and install the software"
 read -p "Do you allow it? [yes/no]: " do
-if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do = "Yes" ];
+if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do = "Yes" ]; then
 
 	read -p "Do you want ssh-keygen? [yes/no]: " ssh
 	read -p "Do you want to install joke softwares? [yes/no]: " joke
