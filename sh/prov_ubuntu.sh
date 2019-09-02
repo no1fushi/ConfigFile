@@ -32,6 +32,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 #Lang
 	yes | sudo apt-get install gcc gauche
 	yes | sudo apt-get install nodejs npm
+	yes | sudo apt-get install default-jre default-jdkc
 
 #Editor
 	yes | sudo apt-get install vim emacs24
