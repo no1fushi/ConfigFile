@@ -101,16 +101,18 @@ export JLESSCHARSET=japanese-ujis
 
 # short
 alias c='clear'
-alias la='ls -s'
 alias ll='ls -l'
+alias la="ls -a"
+alias lss="ls -s"
 # git
 alias gs='git status'
+alias ga='git add'
 alias gc='git commit'
 # file
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
 # useful
-alias back='cd $OLDPWD'
+alias bk='cd $OLDPWD'
 alias eth0='ifconfig eth0'
 alias untar='tar -zxvf'
 
