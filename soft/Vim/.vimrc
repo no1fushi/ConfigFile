@@ -41,7 +41,14 @@ set wildmode=list:longest
 
 "custom
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
+cnoremap rep %s/before/after/g
 cnoremap gosh GoshREPLWithBuffer
+cnoremap nt NERDTree
+cnoremap jc !javac
+cnoremap ja !java
+nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
+nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
+nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
 
 "color
 syntax on
@@ -78,7 +85,7 @@ NeoBundle 'aharisu/vim_goshrepl'
 NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'Shougo/vimproc.vim'
 
-"ruby
+"Ruby
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'Shougo/neocomplete.vim'
@@ -89,10 +96,10 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hokaccha/vim-html5validator'
 
-"css
+"CSS
 NeoBundle 'hail2u/vim-css3-syntax'
 
-"javascript
+"JavaScript
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 
@@ -119,7 +126,7 @@ set showmode
 set showcmd
 set ruler 
 
-"NERDTREE
+"NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -132,3 +139,4 @@ let g:rsenseUseOmniFunc = 1
 
 "emmet
 let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
+
