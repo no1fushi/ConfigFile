@@ -1,41 +1,58 @@
-## 【紹介】
+# 【紹介】
 主に様々なマシンで共有するために  
 設定ファイルやbat,shell scriptなどを置いていきます  
 
 ## ディレクトリ構成
-+ bat  
+* bat  
 バッチファイル
-+ sh  
+* sh  
 シェルスクリプト
-+ soft  
+* soft  
 いろいろなソフトウェアの設定ファイル
 
 ## 中身
 
 #### **- bat -**  
 
-##### kakushi.bat  
+* kakushi.bat  
 		Make Hidden folder  
-##### testserver.bat  
+* makedolders.bat
+
+* makelist.bat
+
+* testserver.bat  
 		vagrant  
-##### sudo.bat  
+* sudo.bat  
 		runasをどうしてもsudoにしたかっただけ  　
 #### **- sh -**  
 
-##### Hello  
-		Output "HelloWorld"  
-##### mc
+* fwset.sh
+
+* mc
 		Memory Clean  
+
+* monit.sh
+
+* prov_rasbian.sh
+
+* prov_ubuntu.sh
+
+* proxy.sh
+
+* sendip
 
 #### **- soft -**  
 
-##### vim
+* vim
 		vimの設定ファイルvimrc。少しずつ育てていきます。  
 		いろいろな方のを参考にさせてもらってます。つまりコピペです。  
-##### bash  
+* bash  
 		bashrc,bash_profile  
-##### SublimeText3  
+* SublimeText3  
 		SublimeText3のパッケージディレクトリ  
-##### node_webdev  
+* node_webdev  
 		node,grupのweb開発環境  
 		これもいろいろな方のを参考。  
+
+* emacs
+
