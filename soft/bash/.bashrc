@@ -103,11 +103,13 @@ export JLESSCHARSET=japanese-ujis
 alias c='clear'
 alias ll='ls -l'
 alias la="ls -a"
-alias lss="ls -s"
 # git
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gco='git checkout'
+alias gf='git fetch'
+alias gb='git branch'
 # file
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
