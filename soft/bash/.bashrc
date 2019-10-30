@@ -107,6 +107,7 @@ alias la="ls -a"
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gcl='git clone'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gb='git branch'
