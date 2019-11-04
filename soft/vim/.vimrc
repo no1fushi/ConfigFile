@@ -41,6 +41,7 @@ set wildmode=list:longest
 
 "custom
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
+cnoremap ss split
 cnoremap rep %s/before/after/g
 cnoremap gosh GoshREPLWithBuffer
 cnoremap nt NERDTree
@@ -49,6 +50,20 @@ cnoremap ja !java
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+" custom Leader
+let mapleader = ","
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>vs :vs<CR>
+nnoremap <Leader>ss :ss<CR>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 "color
 syntax on
@@ -75,6 +90,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'terryma/vim-multiple-cursors'
 
 "search
 NeoBundle 'thinca/vim-visualstar'
@@ -124,7 +140,6 @@ syntax enable
 set laststatus=2
 set showmode
 set showcmd
-set ruler 
 
 "NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -137,6 +152,17 @@ map / <Plug>(incsearch-forward)
 let g:rsenseHome = '/usr/local/lib/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
 
-"emmet
+" emmet
 let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
 
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+ let g:multi_cursor_start_word_key      = '<C-n>'
+ let g:multi_cursor_select_all_word_key = '<A-n>'
+ let g:multi_cursor_start_key           = 'g<C-n>'
+ let g:multi_cursor_select_all_key      = 'g<A-n>'
+ let g:multi_cursor_next_key            = '<C-n>'
+ let g:multi_cursor_prev_key            = '<C-p>'
+ let g:multi_cursor_skip_key            = '<C-x>'
+ let g:multi_cursor_quit_key            = '<Esc>'
