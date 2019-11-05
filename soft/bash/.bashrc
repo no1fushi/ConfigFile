@@ -106,11 +106,15 @@ alias la="ls -a"
 # git
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit'
+alias gaa='git add --all'
+alias gc='git commit -m'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gf='git fetch'
 alias gb='git branch'
+alias gb='git branch'
+alias gps='git push'
+alias gpl='git pull'
 # file
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
