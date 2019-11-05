@@ -89,6 +89,7 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'Shougo/neocomplete.vim'
 
 "search
 NeoBundle 'thinca/vim-visualstar'
@@ -102,7 +103,6 @@ NeoBundle 'Shougo/vimproc.vim'
 "Ruby
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'szw/vim-tags'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'marcus/rsense'
 
 "html
@@ -164,19 +164,29 @@ endif
 
 " gauche
 if neobundle#is_installed('vim_goshrepl')
-	let g:neocomplete#keyword_patterns['gosh-repl'] = "[[:alpha:]+*/@$_=.!?-][[:alnum:]+*/@$_:=.!?-]*"
 	cnoremap gosh GoshREPLWithBuffer
 endif
 
-endif
 " emmet
 if neobundle#is_installed('emmet')
 	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
 endif
 
+" neocomplete
+if neobundle#is_installed('neocomplete.vim')
+	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#max_list = 50
+	let g:neocomplete#max_keyword_width = 80
+	let g:neocomplete#enable_ignore_case = 1
+	highlight Pmenu ctermbg=6
+	highlight PmenuSel ctermbg=3
+	highlight PMenuSbar ctermbg=0
+	inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : “<CR>”
+endif
+
 " multiple-cursors
 if neobundle#is_installed('vim-multiple-cursors')
-	let g:multi_cursor_use_default_mapping=0
+	let g:multi_cursor_use_default_mapping = 0
 	let g:multi_cursor_start_word_key      = '<C-n>'
 	let g:multi_cursor_select_all_word_key = '<A-n>'
 	let g:multi_cursor_start_key           = 'g<C-n>'
