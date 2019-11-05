@@ -28,7 +28,6 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "style
 set number
@@ -43,16 +42,16 @@ set wildmode=list:longest
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
 cnoremap ss split
 cnoremap rep %s/before/after/g
-cnoremap gosh GoshREPLWithBuffer
-cnoremap nt NERDTree
 cnoremap jc !javac
 cnoremap ja !java
+nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
 nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
-nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+
 " custom Leader
 let mapleader = ","
 nnoremap <Leader>w :w<CR>
@@ -71,12 +70,11 @@ syntax on
 "plugins
 :let g:neobundle_default_git_protocol='https'
 if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-
-    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-        echo "install NeoBundle..."
-        :call system("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-    endif
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+		if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+			echo "install NeoBundle..."
+			:call system("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+	endif
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
@@ -119,6 +117,11 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 
+"git
+
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+
 "----------------------------------------------------------
 call neobundle#end()
 NeoBundleCheck
@@ -130,39 +133,64 @@ filetype plugin indent on
 
 " molokai
 if neobundle#is_installed('molokai')
-    colorscheme molokai
+	colorscheme molokai
 endif
 
 set t_Co=256
 syntax enable
 
-"lightline
+" lightline
 set laststatus=2
 set showmode
 set showcmd
 
-"NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" NERDTree
+if neobundle#is_installed('nerdtree')
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+	cnoremap nt NERDTree
+endif
 
 "incsearch.vim
-map / <Plug>(incsearch-forward)
+if neobundle#is_installed('incsearch.vim')
+	map / <Plug>(incsearch-forward)
+endif
 
 " Rsense
-let g:rsenseHome = '/usr/local/lib/rsense-0.3'
-let g:rsenseUseOmniFunc = 1
+if neobundle#is_installed('rsense')
+	let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+	let g:rsenseUseOmniFunc = 1
+endif
 
+" gauche
+if neobundle#is_installed('vim_goshrepl')
+	let g:neocomplete#keyword_patterns['gosh-repl'] = "[[:alpha:]+*/@$_=.!?-][[:alnum:]+*/@$_:=.!?-]*"
+	cnoremap gosh GoshREPLWithBuffer
+endif
+
+endif
 " emmet
-let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
+if neobundle#is_installed('emmet')
+	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
+endif
 
-" Default mapping
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+" multiple-cursors
+if neobundle#is_installed('vim-multiple-cursors')
+	let g:multi_cursor_use_default_mapping=0
+	let g:multi_cursor_start_word_key      = '<C-n>'
+	let g:multi_cursor_select_all_word_key = '<A-n>'
+	let g:multi_cursor_start_key           = 'g<C-n>'
+	let g:multi_cursor_select_all_key      = 'g<A-n>'
+	let g:multi_cursor_next_key            = '<C-n>'
+	let g:multi_cursor_prev_key            = '<C-p>'
+	let g:multi_cursor_skip_key            = '<C-x>'
+	let g:multi_cursor_quit_key            = '<Esc>'
+endif
+
+" vim-gitgutter
+if neobundle#is_installed('vim-multiple-cursors')
+	cnoremap gs Gstatus
+	cnoremap ga Gwrite
+	cnoremap gc Gcommit
+endif
 
