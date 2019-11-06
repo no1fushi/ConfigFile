@@ -181,7 +181,6 @@ if neobundle#is_installed('neocomplete.vim')
 	highlight Pmenu ctermbg=6
 	highlight PmenuSel ctermbg=3
 	highlight PMenuSbar ctermbg=0
-	inoremap <expr><CR>  pumvisible() ? neocomplete#close_popup() : “<CR>”
 endif
 
 " multiple-cursors
