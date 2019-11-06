@@ -1,11 +1,11 @@
-"set char
+" set char
 set encoding=utf-8
 scriptencoding utf-8
 set fenc=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
 
-"set
+" set
 set nobackup
 set noswapfile
 set autoread
@@ -15,21 +15,21 @@ set spell
 set wildmenu
 set history=5000
 
-"indent
+" indent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set autoindent
 set smartindent
 
-"search
+" search
 set ignorecase
 set smartcase
 set incsearch
 set wrapscan
 set hlsearch
 
-"style
+" style
 set number
 set cursorline
 set ruler
@@ -38,7 +38,7 @@ set virtualedit=onemore
 set laststatus=2
 set wildmode=list:longest
 
-"custom
+" Custom map
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
 cnoremap ss split
 cnoremap rep %s/before/after/g
@@ -52,7 +52,7 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
-" custom Leader
+" Custom Leader
 let mapleader = ","
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>vs :vs<CR>
@@ -64,10 +64,10 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-"color
+" Color
 syntax on
 
-"plugins
+" Plugins
 :let g:neobundle_default_git_protocol='https'
 if has('vim_starting')
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -82,7 +82,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 "----------------------------------------------------------
-"set
+" set
 NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
@@ -91,33 +91,37 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'Shougo/neocomplete.vim'
 
-"search
+" snippet
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
+" Search
 NeoBundle 'thinca/vim-visualstar'
 NeoBundle 'haya14busa/incsearch.vim'
 
-"gosh
+" gosh
 NeoBundle 'aharisu/vim_goshrepl'
 NeoBundle 'aharisu/vim-gdev'
 NeoBundle 'Shougo/vimproc.vim'
 
-"Ruby
+" Ruby
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'marcus/rsense'
 
-"html
+" HTML
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hokaccha/vim-html5validator'
 
-"CSS
+" CSS
 NeoBundle 'hail2u/vim-css3-syntax'
 
-"JavaScript
+" JavaScript
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 
-"git
+" Git
 
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
@@ -129,7 +133,7 @@ NeoBundleCheck
 filetype plugin indent on
 
 "---------------------------------------------------------
-"plugins set
+" plugins set
 
 " molokai
 if neobundle#is_installed('molokai')
@@ -151,7 +155,7 @@ if neobundle#is_installed('nerdtree')
 	cnoremap nt NERDTree
 endif
 
-"incsearch.vim
+" incsearch.vim
 if neobundle#is_installed('incsearch.vim')
 	map / <Plug>(incsearch-forward)
 endif
@@ -181,6 +185,17 @@ if neobundle#is_installed('neocomplete.vim')
 	highlight Pmenu ctermbg=6
 	highlight PmenuSel ctermbg=3
 	highlight PMenuSbar ctermbg=0
+endif
+
+" snippet
+if neobundle#is_installed('neosnippet')
+	imap <C-k>	<Plug>(neosnippet_expand_or_jump)
+	smap <C-k>	<Plug>(neosnippet_expand_or_jump)
+	xmap <C-k>	<Plug>(neosnippet_expand_target)
+	if has('conceal')
+		set conceallevel=2 concealcursor=niv
+	endif
+	let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
 endif
 
 " multiple-cursors
