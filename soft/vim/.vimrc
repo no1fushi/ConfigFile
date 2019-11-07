@@ -96,6 +96,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 " snippet
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'no1fushi/mysnippets'
 
 " Search
 NeoBundle 'thinca/vim-visualstar'
@@ -197,7 +198,7 @@ if neobundle#is_installed('neosnippet')
 	if has('conceal')
 		set conceallevel=2 concealcursor=niv
 	endif
-	let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets'
+	let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/bundle/mysnippets/snippets/'
 endif
 
 " multiple-cursors
