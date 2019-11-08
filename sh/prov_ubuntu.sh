@@ -43,7 +43,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 # SetupEditor
 	rm .bashrc
 	rm .bash_profile
-	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/Vim/.vimrc
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/vim/.vimrc
 	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/emacs/init.el
 	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bash_profile
 	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bashrc
@@ -76,7 +76,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	pip install --upgrade pip
 	pip install thefuck
 	echo eval $(thefuck --alias) >> ~/.bash_profile
-	echo eval $(thefuck --alias) >> ~/.bash_rc
+	echo eval $(thefuck --alias) >> ~/.bashrc
 	source ~/.bash_profile
 	source ~/.bashrc
 	pip install numpy pandas matplotlib
