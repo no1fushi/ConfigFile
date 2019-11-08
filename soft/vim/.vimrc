@@ -42,10 +42,10 @@ set wildmode=list:longest
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
 cnoremap ss split
 cnoremap rep %s/before/after/g
-cnoremap jc !javac
-cnoremap ja !java
-cnoremap p set paste
-cnoremap np set nopaste
+cnoremap jc! !javac
+cnoremap ja! !java
+cnoremap paste set paste
+cnoremap npaste set nopaste
 nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
