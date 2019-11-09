@@ -79,6 +79,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo -e "\n\nPython install\n\n"
 	yes | sudo apt install -y build-essential libffi-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
 	sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+	sudo chmod a=rwx .rbenv
 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 	echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
