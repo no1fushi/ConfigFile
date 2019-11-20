@@ -122,4 +122,4 @@ alias bashpf='source ~/.bash_profile'
 alias bk='cd $OLDPWD'
 alias eth0='ifconfig eth0'
 alias untar='tar -zxvf'
-
+alias nano='nano -k -w -i -S'
