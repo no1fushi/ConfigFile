@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Questions
+# Questions
 echo "Will ask you a couple of questions first"
 echo "Please answer yes or no"
 echo "These questions are set to no by default"
@@ -11,46 +11,59 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 
 	read -p "Do you want ssh-keygen? [yes/no]: " ssh
 	read -p "Do you want to install joke softwares? [yes/no]: " joke
-	read -p "Do you need a script created by no1fushi? [yes/no]: " script
 
 	echo "The question is finished"
 	echo "So run the provisioning script"
 
-#Apt
-	yes | sudo apt-get update
-	yes | sudo apt-get upgrade
-	yes | sudo apt-get dist-upgrade
-	yes | sudo apt-get update
+# Apt
+	echo -e "\n\nApt up*\n\n"
+	yes | sudo apt update
+	yes | sudo apt upgrade
+	yes | sudo apt dist-upgrade
+	yes | sudo apt update
+	echo -e "\n\n----------------------------Apt up* OK ----------------------------\n\n"
 
-	#ssh
+# ssh
 	if [ $ssh = "yes" ] || [ $ssh = "y" ] || [ $ssh = "YES" ] || [ $ssh = "Y" ] || [ $ssh = "Yes" ]; then
 		ssh-keygen -t rsa
 		mv ~/id_rsa.pub ~/.ssh/authorized_keys
 		chmod 600 ~/.ssh/authorized_keys
 	fi
 
-#Lang
-	yes | sudo apt-get install gcc gauche
-	yes | sudo apt-get install nodejs npm
-	yes | sudo apt-get install default-jre default-jdkc
+# Lang
 
-#Editor
-	yes | sudo apt-get install vim emacs24
+	echo -e "\n\nPrograming lang install\n\n"
+	yes | sudo apt install gcc gauche
+	yes | sudo apt install nodejs npm
+	yes | sudo apt install default-jre default-jdkc
+	echo -e "\n\n----------------------------Programing lang install OK ----------------------------\n\n"
 
-#SetupEditor
-	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/Vim/.vimrc
+# Editor
+	echo -e "\n\nEditor install\n\n"
+	yes | sudo apt install vim emacs24
+	echo -e "\n\n----------------------------Editor install OK ----------------------------\n\n"
+
+# Tools
+	echo -e "\n\nTools install\n\n"
+	yes | sudo apt install tree traceroute unzip fortune tmux
+	yes | sudo apt install git wget curl
+	echo -e "\n\n----------------------------Tools install OK ----------------------------\n\n"
+
+# SetupEditor
+	echo -e "\n\nDotFiles set\n\n"
+	rm .bashrc
+	rm .bash_profile
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/vim/.vimrc
 	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/emacs/init.el
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bash_profile
+	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bashrc
 	mkdir .emacs.d
 	mv init.el ~/.emacs.d/
+	echo -e "\n\n----------------------------DotFiles set OK ----------------------------\n\n"
 
-#Tool
-	yes | sudo apt-get install tree curl traceroute
-	yes | sudo apt-get install git
-	yes | sudo apt-get install fortune
-	yes | sudo apt-get install tmux
-
-#Ruby
-	yes | sudo apt-get install gcc autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+# Ruby
+	echo -e "\n\nRuby install\n\n"
+	yes | sudo apt install gcc autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 	sudo git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 	sudo chmod a=rwx .rbenv
 	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
@@ -60,72 +73,72 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	rbenv install 2.4.1
 	rbenv rehash
 	rbenv global 2.4.1
+	echo -e "\n\n----------------------------Ruby install OK ----------------------------\n\n"
 
-#RootMail
-	yes | sudo apt-get install ssmtp sendmail-base
+# Python
+	echo -e "\n\nPython install\n\n"
+	yes | sudo apt install -y build-essential libffi-dev libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+	sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+	sudo chmod a=rwx .pyenv
+	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+	echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+	source ~/.bash_profile
+	sudo pyenv install 3.8.0
+	pyenv global 3.8.0
+	echo -e "\n\n----------------------------Python install OK ----------------------------\n\n"
 
-#Logwatch
-	yes | sudo apt-get install logwatch
+# Python packages
+	echo -e"\n\nPython packages install\n\n"
+	pip install --upgrade pip
+	pip install thefuck
+	echo eval $(thefuck --alias) >> ~/.bash_profile
+	echo eval $(thefuck --alias) >> ~/.bashrc
+	source ~/.bash_profile
+	source ~/.bashrc
+	pip install numpy pandas matplotlib
+	echo -e "\n\n----------------------------Python packages install OK ----------------------------\n\n"
 
-#Mongodb
-	yes | sudo apt-get install g++ build-essential debian-keyring autoconf automake libtool flex bison scons git mongodb
+# RootMail
+	echo -e "\n\nMail tools install\n\n"
+	yes | sudo apt install ssmtp sendmail-base
+	echo -e "\n\n----------------------------Mail tools install OK ----------------------------\n\n"
 
-#GemPackages
-	yes | gem install discordrb gmail net-ping bigdecimal flumtter
+# Logwatch
+	echo -e "\n\nLogwatch install\n\n"
+	yes | sudo apt install logwatch
+	echo -e "\n\n----------------------------Logwatch install OK ----------------------------\n\n"
 
-#Joke
-if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] || [ $joke = "Yes" ]; then
-		yes | sudo apt-get install sl cowsay
+# Mongodb
+	yes | sudo apt install g++ build-essential debian-keyring autoconf automake libtool flex bison scons git mongodb
+
+# Joke
+	if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] || [ $joke = "Yes" ]; then
+		echo -e "\n\nJoke softs install\n\n"
+		yes | sudo apt install sl cowsay
 		yes | gem install cureutils matsuya
 		yes | gem install rubipara takarabako
 		yes | sudo npm install -g faker-cli emspect
-		yes | sudo apt-get install screenfetch
-		echo 'screenfetch' >> ~/.bash_profile
-fi
-
-#Setup .bash_profile
-	echo 'source ~/.bashrc' >> ~/.bash_profile
-	echo 'echo -e "\n Disk capacity"' >> ~/.bash_profile
-	echo 'df -h' >> ~/.bash_profile
-	echo 'echo -e "\n"' >> ~/.bash_profile
-	echo 'echo -e "\n Users logged in at the same time"' >> ~/.bash_profile
-	echo 'w' >> ~/.bash_profile
-#Setup .bashrc
-	rm .bashrc
-	wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/soft/bash/.bashrc
-	source ~/.bashrc
-
-#SetupFile
-	if [ $script = "yes" ] || [ $script = "y" ] || [ $script = "YES" ] || [ $script = "Y" ] || [ $script = "Yes" ]; then
-		mkdir script
-		echo 'export PATH="$HOME/script:$PATH"' >> ~/.bash_profile
-		mkdir script/tmp/
-		touch script/tmp/old_ip.txt
-		echo 'a' >> script/tmp/old_ip.txt
-		yes | sudo apt-get install mutt
-		wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/sh/mc
-		wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/sh/monit.sh
-		wget https://raw.githubusercontent.com/no1fushi/ConfigFile/master/sh/sendip
-		chmod +x monit.sh
-		chmod +x sendip
-		chmod +x mc
-		mv monit.sh script/
-		mv sendip script/
-		mv mc script/
-		touch script/chruby
-		echo 'ps ax | grep ruby' >> script/chruby
-		chmod +x script/chruby
+		yes | sudo apt install screenfetch
+		echo -e "\n\n----------------------------Joke softs install OK ----------------------------\n\n"
 	fi
 
+# Setup .files
+	echo -e "\n\nDotFiles set root\n\n"
+	source ~/.bashrc
+	source ~/.bash_profile
 	sudo cp .bash_profile /root/
 	sudo cp .bashrc /root/
 	sudo cp -r .emacs.d/ /root/
 	sudo cp .vimrc /root/
+	echo -e "\n\n----------------------------DotFiles set root OK ----------------------------\n\n"
 
-#Apt-clean
-	yes | sudo apt-get autoremove --purge
-	yes | sudo apt-get clean
-
+# Apt clean
+	echo -e "\n\nApt clean\n\n"
+	yes | sudo apt autoremove --purge
+	yes | sudo apt clean
+	echo -e "\n\n----------------------------Apt clean OK ----------------------------\n\n"
 else
 	exit
 fi
+

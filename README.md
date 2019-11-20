@@ -44,6 +44,8 @@ IPアドレスが変わるとメールするスクリプト
 
 #### **- soft -**  
 
+* atom  
+styles.less  
 * vim  
 .vimrc  
 いろいろな方のを参考にさせてもらってます。  
@@ -56,3 +58,5 @@ node,grupのweb開発環境
 これもいろいろな方のを参考。  
 * emacs  
 init.el
+* vagrant  
+Vagrantfile
