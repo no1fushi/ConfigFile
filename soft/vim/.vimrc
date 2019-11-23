@@ -14,6 +14,7 @@ set showcmd
 set spell
 set wildmenu
 set history=5000
+set backspace=indent,eol,start
 
 " indent
 set tabstop=2
@@ -39,13 +40,13 @@ set laststatus=2
 set wildmode=list:longest
 
 " Custom map
+command Ss :split
+command P set paste
+command Np set nopaste
 cnoremap w!! w !sudo tee > /dev/null %<CR> :e!<CR>
-cnoremap ss split
 cnoremap rep %s/before/after/g
 cnoremap jc! !javac
 cnoremap ja! !java
-cnoremap paste set paste
-cnoremap npaste set nopaste
 nnoremap <C-O> :<C-u>call append(expand('.'), '')<Cr>j
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 nnoremap <silent> <Space><Space> "zyiw:let @/ = '\<' . @z . '\>'<CR>:set hlsearch<CR>
@@ -53,18 +54,50 @@ nmap # <Space><Space>:%s/<C-r>///g<Left><Left>
 vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
+vnoremap v $h
+inoremap <C-t> <Esc><Left>"zx"zpa
+inoremap jj <ESC>
+" move
+nnoremap j gj
+nnoremap k gk
+" split
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w>><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
+" tarm emacs
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
 
 " Custom Leader
 let mapleader = ","
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>vs :vs<CR>
-nnoremap <Leader>ss :ss<CR>
+nnoremap <Leader>ss :split<CR>
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+
+if has("autocmd")
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\	exe "normal! g'\"" |
+	\ endif
+endif
 
 " Color
 syntax on
@@ -88,10 +121,12 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'Shougo/neocomplcache.vim'
 
 " snippet
 NeoBundle 'Shougo/neosnippet'
@@ -105,7 +140,6 @@ NeoBundle 'haya14busa/incsearch.vim'
 " gosh
 NeoBundle 'aharisu/vim_goshrepl'
 NeoBundle 'aharisu/vim-gdev'
-NeoBundle 'Shougo/vimproc.vim'
 
 " Ruby
 NeoBundle 'tpope/vim-endwise'
@@ -179,15 +213,12 @@ if neobundle#is_installed('emmet')
 	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
 endif
 
-" neocomplete
-if neobundle#is_installed('neocomplete.vim')
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#max_list = 50
-	let g:neocomplete#max_keyword_width = 80
-	let g:neocomplete#enable_ignore_case = 1
-	highlight Pmenu ctermbg=6
-	highlight PmenuSel ctermbg=3
-	highlight PMenuSbar ctermbg=0
+" vim-indent-guides
+if neobundle#is_installed('vim-indent-guides')
+	let g:indent_guides_enable_on_vim_startup = 1
+	let g:indent_guides_start_level = 2
+	let g:indent_guides_guide_size = 1
+	let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
 endif
 
 " snippet
@@ -215,9 +246,40 @@ if neobundle#is_installed('vim-multiple-cursors')
 endif
 
 " vim-gitgutter
-if neobundle#is_installed('vim-multiple-cursors')
+if neobundle#is_installed('vim-gitgutter')
 	cnoremap gs Gstatus
 	cnoremap ga Gwrite
 	cnoremap gc Gcommit
+endif
+
+" vim-fugitive
+if neobundle#is_installed('vim-fugitive')
+	set statusline+=%{fugitive#statusline()}
+endif
+
+" neocomplcache
+if neobundle#is_installed('neocomplcache.vim')
+	let g:acp_enableAtStartup = 0
+	let g:neocomplcache_enable_at_startup = 1
+	let g:neocomplcache_enable_smart_case = 1
+	let g:neocomplcache_min_syntax_length = 3
+	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+	let g:neocomplcache_dictionary_filetype_lists = {
+				\ 'default' : ''
+				\ }
+
+	inoremap <expr><C-g>     neocomplcache#undo_completion()
+	inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+	function! s:my_cr_function()
+		return neocomplcache#smart_close_popup() . "\<CR>"
+	endfunction
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+	inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+	inoremap <expr><C-y>  neocomplcache#close_popup()
+	inoremap <expr><C-e>  neocomplcache#cancel_popup()
 endif
 
