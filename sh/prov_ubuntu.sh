@@ -43,7 +43,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 
 	echo -e "\n\nPrograming lang install\n\n"
 	yes | sudo apt install gcc gauche
-	yes | sudo apt install default-jre default-jdkc
+	yes | sudo apt install default-jre default-jdk
 	echo -e "\n\n----------------------------Programing lang install OK ----------------------------\n\n"
 
 # Editor
