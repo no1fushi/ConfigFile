@@ -27,7 +27,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo -e "\n\nTime set*\n\n"
 	yes | sudo apt install ntpdate
 	sudo timedatectl set-timezone Asia/Tokyo
-	sudo ntpdate -v ntp.nict.jp
+	sudo ntpdate -v ntp.jst.mfeed.ad.jp
 	echo -e "\n\n----------------------------Time set OK ----------------------------\n\n"
 
 # ssh
