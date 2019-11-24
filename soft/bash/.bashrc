@@ -97,6 +97,10 @@ export LESS='-X -i -P ?f%f:(stdin).  ?lb%lb?L/%L..  [?eEOF:?pb%pb\%..]'
 # Display Japanese with less
 export JLESSCHARSET=japanese-ujis
 
+# vimode
+set -o vi
+bind '"jj": vi-movement-mode'
+
 # ----------- My alias sets -----------
 
 # short
@@ -123,3 +127,4 @@ alias bk='cd $OLDPWD'
 alias eth0='ifconfig eth0'
 alias untar='tar -zxvf'
 alias nano='nano -k -w -i -S'
+
