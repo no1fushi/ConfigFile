@@ -22,6 +22,12 @@ set shiftwidth=2
 set softtabstop=2
 set autoindent
 set smartindent
+set list
+set listchars=tab:¦_,trail:~,nbsp:~
+hi SpecialKey ctermfg=darkmagenta
+command I set list!
+autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
+autocmd VimEnter * match FullWidthSpace /　/
 
 " search
 set ignorecase
@@ -121,7 +127,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tomtom/tcomment_vim'
@@ -211,14 +216,6 @@ endif
 " emmet
 if neobundle#is_installed('emmet')
 	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
-endif
-
-" vim-indent-guides
-if neobundle#is_installed('vim-indent-guides')
-	let g:indent_guides_enable_on_vim_startup = 1
-	let g:indent_guides_start_level = 2
-	let g:indent_guides_guide_size = 1
-	let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
 endif
 
 " snippet
