@@ -48,7 +48,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 
 # Editor
 	echo -e "\n\nEditor install\n\n"
-	yes | sudo apt install emacs24 nano
+	yes | sudo apt install emacs nano
 	echo -e "\n\n----------------------------Editor install OK ----------------------------\n\n"
 
 # vim
