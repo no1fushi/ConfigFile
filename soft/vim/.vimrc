@@ -26,8 +26,6 @@ set list
 set listchars=tab:¦_,trail:~,nbsp:~
 hi SpecialKey ctermfg=darkmagenta
 command I set list!
-autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
-autocmd VimEnter * match FullWidthSpace /　/
 
 " search
 set ignorecase
@@ -180,6 +178,8 @@ filetype plugin indent on
 " molokai
 if neobundle#is_installed('molokai')
 	colorscheme molokai
+	autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
+	autocmd VimEnter * match FullWidthSpace /　/
 endif
 
 set t_Co=256
