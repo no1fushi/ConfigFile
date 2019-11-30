@@ -130,6 +130,7 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'cohama/lexima.vim'
 
 " snippet
 NeoBundle 'Shougo/neosnippet'
