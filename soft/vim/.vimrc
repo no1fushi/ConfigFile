@@ -163,7 +163,6 @@ NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 
 " Git
-
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
 
@@ -195,7 +194,7 @@ set showcmd
 if neobundle#is_installed('nerdtree')
 	autocmd StdinReadPre * let s:std_in=1
 	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-	cnoremap nt NERDTree
+	cnoremap nt! NERDTree
 endif
 
 " incsearch.vim
