@@ -161,6 +161,9 @@ NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
 
+"json
+NeoBundle 'elzr/vim-json'
+
 " Git
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
@@ -215,6 +218,11 @@ endif
 " emmet
 if neobundle#is_installed('emmet')
 	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
+endif
+
+" vim-json
+if neobundle#is_installed('vim-json')
+	let g:vim_json_syntax_conceal = 0
 endif
 
 " snippet
