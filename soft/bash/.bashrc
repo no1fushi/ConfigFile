@@ -110,6 +110,8 @@ alias la="ls -a"
 # editor
 alias vi='vim'
 alias emacs='emacs -nw'
+vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
+alias vless='/usr/share/vim/vim${vim_version}/macros/less.sh'
 # git
 alias gs='git status'
 alias ga='git add'
