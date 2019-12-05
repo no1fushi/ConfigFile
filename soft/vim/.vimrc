@@ -85,6 +85,8 @@ cnoremap <C-d> <Del>
 " Custom Leader
 let mapleader = ","
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>vs :vs<CR>
 nnoremap <Leader>ss :split<CR>
 nnoremap <Leader>h ^
@@ -249,20 +251,28 @@ if neobundle#is_installed('vim-multiple-cursors')
 	let g:multi_cursor_quit_key            = '<Esc>'
 endif
 
-" vim-gitgutter
-if neobundle#is_installed('vim-gitgutter')
-	cnoremap gs Gstatus
-	cnoremap ga Gwrite
-	cnoremap gc Gcommit
-endif
-
 " vim-fugitive
 if neobundle#is_installed('vim-fugitive')
 	set statusline+=%{fugitive#statusline()}
+	cnoremap gs! Gstatus
+	cnoremap ga! Gwrite
+	cnoremap gc! Gcommit -m
+	cnoremap gps! Git push
+	cnoremap gpl! Git pull
+	cnoremap gl! Git log
+	cnoremap gco! Git checkout
+	cnoremap gb! Git branch
+	cnoremap gbd! Git branch -d
+	cnoremap gr! Git reset
+	cnoremap grh! Git reset --hard
+	cnoremap gra! Git remote add origin
 endif
 
 " neocomplcache
 if neobundle#is_installed('neocomplcache.vim')
+	command Ncomp :NeoComplCacheDisable
+	command Ycomp :NeoComplCacheEnable
+
 	let g:acp_enableAtStartup = 0
 	let g:neocomplcache_enable_at_startup = 1
 	let g:neocomplcache_enable_smart_case = 1
