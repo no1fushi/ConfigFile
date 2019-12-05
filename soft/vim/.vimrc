@@ -130,7 +130,6 @@ NeoBundle 'terryma/vim-multiple-cursors'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'cohama/lexima.vim'
 
 " snippet
 NeoBundle 'Shougo/neosnippet'
@@ -161,6 +160,9 @@ NeoBundle 'hail2u/vim-css3-syntax'
 " JavaScript
 NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'jiangmiao/simple-javascript-indenter'
+
+"json
+NeoBundle 'elzr/vim-json'
 
 " Git
 NeoBundle 'airblade/vim-gitgutter'
@@ -216,6 +218,11 @@ endif
 " emmet
 if neobundle#is_installed('emmet')
 	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
+endif
+
+" vim-json
+if neobundle#is_installed('vim-json')
+	let g:vim_json_syntax_conceal = 0
 endif
 
 " snippet
