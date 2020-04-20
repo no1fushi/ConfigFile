@@ -1,0 +1,1 @@
+PowerShell.exe Start-Process PowerShell -Verb RunAs Start-MpWDOScan
