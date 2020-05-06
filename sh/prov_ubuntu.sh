@@ -75,7 +75,10 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	sudo chmod a=rwx .rbenv
 	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
 	echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-	source .bash_profile
+	echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+	echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+	source ~/.bash_profile
+	source ~/.bashrc
 	sudo git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 	ruby=$(rbenv install -l | grep -v - | tail -1)
 	rbenv install $ruby
@@ -95,7 +98,11 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
 	echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+	echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+	echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 	source ~/.bash_profile
+	source ~/.bashrc
 	python3=$(pyenv install -l | grep -v '[a-zA-Z]' | grep -e '\s3\.?*' | tail -1)
 	CONFIGURE_OPTS="--enable-shared" pyenv install $python3
 	pyenv global $python3
@@ -181,10 +188,10 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo -e "\n\nDotFiles set root\n\n"
 	source ~/.bashrc
 	source ~/.bash_profile
-	sudo cp .bash_profile /root/
-	sudo cp .bashrc /root/
+	sudo cp ~/.bash_profile /root/
+	sudo cp ~/.bashrc /root/
 	sudo cp -r .emacs.d/ /root/
-	sudo cp .vimrc /root/
+	sudo cp ~/.vimrc /root/
 	echo -e "\n\n----------------------------DotFiles set root OK ----------------------------\n\n"
 
 # Apt clean
