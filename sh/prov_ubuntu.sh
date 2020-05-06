@@ -39,30 +39,6 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 		echo -e "\n\n----------------------------SSH-Keygen OK ----------------------------\n\n"
 	fi
 
-# Lang
-
-	echo -e "\n\nPrograming lang install\n\n"
-	yes | sudo apt install gcc gauche
-	yes | sudo apt install default-jre default-jdk
-	echo -e "\n\n----------------------------Programing lang install OK ----------------------------\n\n"
-
-# Editor
-	echo -e "\n\nEditor install\n\n"
-	yes | sudo apt install emacs nano
-	echo -e "\n\n----------------------------Editor install OK ----------------------------\n\n"
-
-# vim
-	echo -e "\n\nVim install\n\n"
-	yes | sudo apt install  ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev build-dep
-	sudo sed -Ei 's/^# deb-src /deb-src /' /etc/apt/sources.list
-	sudo apt build-dep vim
-	cd /opt/
-	cd vim/
-	sudo ./configure --with-features=huge --enable-gui=auto --enable-gtk2-check --with-x --enable-multibyte --enable-luainterp=dynamic --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missing --prefix=/usr/local --enable-pythoninterp=dynamic --enable-python3interp=dynamic --enable-rubyinterp=dynamic
-	sudo make
-	sudo make install
-	cd
-	echo -e "\n\n----------------------------Vim install OK ----------------------------\n\n"
 
 # Tools
 	echo -e "\n\nTools install\n\n"
@@ -84,6 +60,14 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	mv init.el ~/.emacs.d/
 	echo -e "\n\n----------------------------DotFiles set OK ----------------------------\n\n"
 
+# Lang
+
+	echo -e "\n\nPrograming lang install\n\n"
+	yes | sudo apt install gcc gauche
+	yes | sudo apt install default-jre default-jdk
+	echo -e "\n\n----------------------------Programing lang install OK ----------------------------\n\n"
+
+
 # Ruby
 	echo -e "\n\nRuby install\n\n"
 	yes | sudo apt install gcc autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
@@ -97,10 +81,14 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	rbenv install $ruby
 	rbenv global $ruby
 	rbenv rehash
+	sudo cp -r .rbenv/ /root/
+	sudo chmod a=rwx /root/.rbenv
 	echo -e "\n\n----------------------------Ruby install OK ----------------------------\n\n"
 
 # Python
 	echo -e "\n\nPython install\n\n"
+	yes | sudo apt --purge remove python2
+	yes | sudo apt autoremove
 	yes | sudo apt install -y libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
 	sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 	sudo chmod a=rwx .pyenv
@@ -109,9 +97,11 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 	source ~/.bash_profile
 	python3=$(pyenv install -l | grep -v '[a-zA-Z]' | grep -e '\s3\.?*' | tail -1)
-	sudo pyenv install $python3
+	CONFIGURE_OPTS="--enable-shared" pyenv install $python3
 	pyenv global $python3
 	pyenv rehash
+	sudo cp -r .pyenv/ /root/
+	sudo chmod a=rwx /root/.pyenv
 	echo -e "\n\n----------------------------Python install OK ----------------------------\n\n"
 
 # Python packages
@@ -148,10 +138,23 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	yes | sudo apt purge nodejs npm
 	echo -e "\n\n----------------------------Node.js install OK ----------------------------\n\n"
 
-# Node.js packages
-	echo -e"\n\nNode.js packages install\n\n"
-	npm install -D webpack webpack-cli babel-loader @babel/core @babel/preset-env
-	echo -e "\n\n----------------------------Node.js packages install OK ----------------------------\n\n"
+
+# Editor
+	echo -e "\n\nEditor install\n\n"
+	yes | sudo apt install emacs nano
+	echo -e "\n\n----------------------------Editor install OK ----------------------------\n\n"
+
+# vim
+	echo -e "\n\nVim install\n\n"
+	yes | sudo apt install  ncurses-dev lua 5.3 liblua5.3-dev luajit python3-dev ruby-dev
+	git clone https://github.com/vim/vim.git
+	sudo ./configure --with-features=huge --enable-gui=auto --enable-gtk2-check --with-x --enable-multibyte --enable-luainterp=dynamic --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missing --prefix=/usr/local --enable-python3interp=dynamic --enable-rubyinterp=dynamic vi_cv_path_python3=$(which python)
+	sudo make
+	sudo make install
+	cd
+	sudo rm -rf vim
+	echo -e "\n\n----------------------------Vim install OK ----------------------------\n\n"
+
 
 # RootMail
 	echo -e "\n\nMail tools install\n\n"
@@ -162,9 +165,6 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo -e "\n\nLogwatch install\n\n"
 	yes | sudo apt install logwatch
 	echo -e "\n\n----------------------------Logwatch install OK ----------------------------\n\n"
-
-# Mongodb
-	yes | sudo apt install g++ debian-keyring autoconf automake libtool flex bison scons git mongodb
 
 # Joke
 	if [ $joke = "yes" ] || [ $joke = "y" ] || [ $joke = "YES" ] || [ $joke = "Y" ] || [ $joke = "Yes" ]; then
