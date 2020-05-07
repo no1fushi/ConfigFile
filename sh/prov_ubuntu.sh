@@ -84,15 +84,13 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	rbenv install $ruby
 	rbenv global $ruby
 	rbenv rehash
-	sudo cp -r .rbenv/ /root/
-	sudo chmod a=rwx /root/.rbenv
 	echo -e "\n\n----------------------------Ruby install OK ----------------------------\n\n"
 
 # Python
 	echo -e "\n\nPython install\n\n"
 	yes | sudo apt --purge remove python2
 	yes | sudo apt autoremove
-	yes | sudo apt install -y libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev
+	yes | sudo apt install -y libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
 	sudo git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 	sudo chmod a=rwx .pyenv
 	echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
@@ -107,23 +105,17 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	CONFIGURE_OPTS="--enable-shared" pyenv install $python3
 	pyenv global $python3
 	pyenv rehash
-	sudo cp -r .pyenv/ /root/
-	sudo chmod a=rwx /root/.pyenv
 	echo -e "\n\n----------------------------Python install OK ----------------------------\n\n"
 
 # Python packages
 	echo -e"\n\nPython packages install\n\n"
-	sudo pip install --upgrade pip setuptools
-	sudo pip install ez-setup
-	git clone https://github.com/Zulko/unroll
-	pip install ./unroll
-	sudo rm -rf unroll/
-	sudo pip install thefuck
-	echo eval $(thefuck --alias) >> ~/.bash_profile
-	echo eval $(thefuck --alias) >> ~/.bashrc
+	pip install --upgrade pip setuptools
+	pip install thefuck
+	echo 'eval $(thefuck --alias)' >> ~/.bash_profile
+	echo 'eval $(thefuck --alias)' >> ~/.bashrc
 	source ~/.bash_profile
 	source ~/.bashrc
-	sudo pip install numpy pandas matplotlib
+	pip install numpy pandas matplotlib
 	echo -e "\n\n----------------------------Python packages install OK ----------------------------\n\n"
 
 # Mecab
@@ -134,7 +126,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo yes | sudo bin/install-mecab-ipadic-neologd
 	cd
 	sudo rm -rf mecab-ipadic-neologd/
-	sudo pip install mecab
+	pip install mecab
 	echo -e "\n\n----------------------------Mecab install OK ----------------------------\n\n"
 
 # Nodejs
@@ -155,6 +147,7 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	echo -e "\n\nVim install\n\n"
 	yes | sudo apt install  ncurses-dev lua 5.3 liblua5.3-dev luajit python3-dev ruby-dev
 	git clone https://github.com/vim/vim.git
+	cd vim
 	sudo ./configure --with-features=huge --enable-gui=auto --enable-gtk2-check --with-x --enable-multibyte --enable-luainterp=dynamic --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missing --prefix=/usr/local --enable-python3interp=dynamic --enable-rubyinterp=dynamic vi_cv_path_python3=$(which python)
 	sudo make
 	sudo make install
@@ -192,6 +185,10 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	sudo cp ~/.bashrc /root/
 	sudo cp -r .emacs.d/ /root/
 	sudo cp ~/.vimrc /root/
+	sudo cp -r .pyenv/ /root/
+	sudo chmod a=rwx /root/.pyenv
+	sudo cp -r .rbenv/ /root/
+	sudo chmod a=rwx /root/.rbenv
 	echo -e "\n\n----------------------------DotFiles set root OK ----------------------------\n\n"
 
 # Apt clean
@@ -199,6 +196,13 @@ if [ $do = "yes" ] || [ $do = "y" ] || [ $do = "YES" ] || [ $do = "Y" ] || [ $do
 	yes | sudo apt autoremove --purge
 	yes | sudo apt clean
 	echo -e "\n\n----------------------------Apt clean OK ----------------------------\n\n"
+
+# Dir clean
+	echo -e "\n\nDir clean\n\n"
+	yes | sudo rmdir ~/Public/
+	yes | sudo rm -rf ~/Templates/
+	echo -e "\n\n----------------------------Dir clean OK ----------------------------\n\n"
+
 else
 	exit
 fi
