@@ -1,5 +1,4 @@
 #!/usr/bin/bash
-cd `dirname $0`
 echo -n Target file extension : 
 read target
 echo -n Conversion file extension : 
