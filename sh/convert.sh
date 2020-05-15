@@ -7,7 +7,7 @@ read conv
 mkdir -p converted-${conv}
 
 IFS=$'\n'
-for FILE in *.webm;do
+for FILE in *.${target};do
 	FILENAME=`echo ${FILE} | sed 's/\.[^\.]*$//'`
 	ffmpeg -i ${FILENAME}.${target} converted-${conv}/${FILENAME}.${conv}
 done
