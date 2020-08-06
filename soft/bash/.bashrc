@@ -1,58 +1,56 @@
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Duplicate history avoidance
+HISTCONTROL=ignoreboth # ignorespaces and ignoredups
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+# Command sharing between terminals
+export SHARE_HIS="history -a; history -c; history -r; $SHARE_HIS"
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# Turn off .bash_history appending mode
+shopt -u histappend
 
-# check the window size after each command and, if necessary,
+# History Size
+HISTSIZE=2000
+HISTFILESIZE=4000
+
+# Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+# Make less more friendly for non-text input files, see lesspipe
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
+# Set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
+# Set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+	xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+# Enable color prompt mode
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=yes
-    fi
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		color_prompt=yes
+	else
+		color_prompt=yes
+	fi
 fi
 
+# Prompt settings
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t\[\e[1;35m\]\n\u@\h\[\e[0;34m\]:\w\[\e[0;32m\]\$'
+	PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t\[\e[1;35m\]\n\u@\h\[\e[0;34m\]:\w\[\e[0;32m\]\$'
 else
-    PS1='\d\t\n\u@\h:\w\$ '
+	PS1='\d\t\n\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -70,12 +68,10 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -103,16 +99,16 @@ bind '"jj": vi-movement-mode'
 
 # ----------- My alias sets -----------
 
-# short
+# Short
 alias c='clear'
 alias ll='ls -l'
 alias la="ls -a"
-# editor
+# Editor
 alias vi='vim'
 alias emacs='emacs -nw'
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
 alias vless='/usr/share/vim/vim${vim_version}/macros/less.sh'
-# git
+# Git
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
@@ -127,12 +123,25 @@ alias gl='git log'
 alias gr='git reset'
 alias grh='git reset --hard'
 alias gra='git remote add origin'
-# file
+# File
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
-# useful
+# Useful
 alias bk='cd $OLDPWD'
 alias eth0='ifconfig eth0'
 alias untar='tar -zxvf'
 alias nano='nano -k -w -i -S'
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+eval $(thefuck --alias)
+
+# Docker
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dils='docker image ls'
 
