@@ -108,6 +108,12 @@ alias vi='vim'
 alias emacs='emacs -nw'
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
 alias vless='/usr/share/vim/vim${vim_version}/macros/less.sh'
+# Apt
+alias au='sudo apt update -y'
+alias ag='sudo apt upgrade -y'
+alias ar='sudo apt autoremove --purge -y'
+alias ac='sudo apt clean'
+alias auu='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove --purge -y && sudo apt clean'
 # Git
 alias gs='git status'
 alias ga='git add'
