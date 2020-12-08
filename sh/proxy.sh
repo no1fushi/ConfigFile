@@ -9,6 +9,7 @@ read -sp "pass :" pass
 
 export https_proxy="http://${num}:${pass}@157.114.16.93:8080"
 export http_proxy="http://${num}:${pass}@157.114.16.93:8080"
+export ftp_proxy="http://${num}:${pass}@157.114.16.93:8080"
 echo ""
 
 git config --global http.proxy http://${num}:${pass}@157.114.16.93:8080

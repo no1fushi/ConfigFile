@@ -1,4 +1,0 @@
-##lang: html
-<div>
-  {{!selected}}{{!cursor}}
-</div>

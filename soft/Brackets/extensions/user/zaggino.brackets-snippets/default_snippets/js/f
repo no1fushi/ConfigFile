@@ -1,4 +1,0 @@
-##lang: js
-function {{$1:functionName}}() {
-    {{!cursor}}
-}

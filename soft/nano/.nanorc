@@ -1,0 +1,14 @@
+# set
+include "/usr/share/nano/*.nanorc"
+set nowrap
+set smooth
+set suspend
+set tabsize 4
+set autoindent
+set const
+
+# color
+set titlecolor white,black
+set statuscolor white
+set keycolor white,black
+set functioncolor white

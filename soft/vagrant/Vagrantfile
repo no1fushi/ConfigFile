@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+	config.vm.define "dev" do |dev|
+		#dev.vm.box = "bento/ubuntu-18.04" 
+		#dev.vm.box = "mydev-ubuntu"
+		dev.vm.box = "no1fushi/dev-ubuntu"
+		dev.vm.box_version = "1.0"
+		dev.vm.network "private_network", ip: "192.168.10.101"
+		dev.vm.network "forwarded_port", guest: 80, host: 8080
+		dev.vm.network "forwarded_port", guest: 22, host: 12222, id: "ssh"
+		dev.vm.synced_folder "./workspace", "/home/vagrant/workspace"
+		#dev.vm.provision "shell", path: "setup.sh"
+	end
+
+	config.vm.provider :virtualbox do |vb|
+		vb.name = "dev-ubuntu"
+		vb.gui = false
+		vb.memory = "2048" 
+		vb.cpus = "1"
+	end
+
+	config.ssh.forward_agent = true
+end
