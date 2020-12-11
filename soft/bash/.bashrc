@@ -113,6 +113,7 @@ alias au='sudo apt update -y'
 alias ag='sudo apt upgrade -y'
 alias ar='sudo apt autoremove --purge -y'
 alias ac='sudo apt clean'
+alias ai='sudo apt install -y'
 alias auu='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove --purge -y && sudo apt clean'
 # Git
 alias gs='git status'
