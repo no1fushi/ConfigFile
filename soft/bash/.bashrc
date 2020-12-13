@@ -97,15 +97,17 @@ export JLESSCHARSET=japanese-ujis
 set -o vi
 bind '"jj": vi-movement-mode'
 
+# Lang
+LC_ALL=C
+
 # ----------- My alias sets -----------
 
-# Short
-alias c='clear'
-alias ll='ls -l'
-alias la="ls -a"
 # Editor
+alias ed='vim'
+alias edit='vim'
 alias vi='vim'
 alias emacs='emacs -nw'
+alias nano='nano -k -w -i -S'
 vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
 alias vless='/usr/share/vim/vim${vim_version}/macros/less.sh'
 # Apt
@@ -133,22 +135,45 @@ alias gra='git remote add origin'
 # File
 alias bashrc='source ~/.bashrc'
 alias bashpf='source ~/.bash_profile'
+# Docker
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+alias dils='docker image ls'
+# Network
+alias eth0='ifconfig eth0'
+alias wlp='ifconfig wlp2s0'
+alias wifi='nmtui'
+alias wifils='nmcli device wifi list'
+alias wifis='nmcli device status'
+# Short
+alias ll='ls -l'
+alias la="ls -a"
+alias c='clear'
+alias cl='clear && ll'
+alias cs='clear && ls'
+alias ca='clear && la'
+alias df='df -h'
+alias mv='mv -i'
+alias cp='cp -i'
+alias psa='ps aux'
 # Useful
 alias bk='cd $OLDPWD'
-alias eth0='ifconfig eth0'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias dp='cd ~/Desktop/'
+alias mnt='cd /media/$USER/'
+alias umnt='sudo umount'
+alias fn='cat /dev/null > '
+alias fc='ls -F |grep -v / |wc -l'
 alias untar='tar -zxvf'
-alias nano='nano -k -w -i -S'
-
+alias ts='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.jst.mfeed.ad.jp'
+alias tsnict='sudo timedatectl set-timezone Asia/Tokyo && sudo ntpdate -v ntp.nict.jp'
+# Path
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
 eval $(thefuck --alias)
-
-# Docker
-alias dps='docker ps'
-alias dpsa='docker ps -a'
-alias dils='docker image ls'
 
