@@ -18,16 +18,6 @@ shopt -s checkwinsize
 # Make less more friendly for non-text input files, see lesspipe
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-	debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# Set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-	xterm-color) color_prompt=yes;;
-esac
-
 # Enable color prompt mode
 force_color_prompt=yes
 
@@ -39,29 +29,48 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
+function git_prompt() {
+	if [ -e ".git" ]; then
+		git fetch
+		branch=$(git branch 2> /dev/null | sed -e '/^[^*]/d'  -e 's/*//g' -e 's/ //g')
+		commit=$(git rev-parse --short HEAD)
+		if [[ $(git status 2> /dev/null | head -n2) = *"Your branch is behind"* ]]; then
+			behind_branch=$(git status 2> /dev/null | head -n2 | tail -n1 | sed -e "s/^.*'\(.*\)'.*$/\1/")
+			behind_num=$(git status 2> /dev/null | head -n2 | tail -n1 | sed -e 's/.*by//'  -e 's/commit.*//' -e 's/ //g')
+			echo -n "($branch[ < $behind_branch($behind_num)])"
+		elif [[ $(git status 2> /dev/null | head -n2) = *"Your branch is ahead"* ]]; then
+			ahead_branch=$(git status 2> /dev/null | head -n2 | tail -n1 | sed -e "s/^.*'\(.*\)'.*$/\1/")
+			ahead_num=$(git status 2> /dev/null | head -n2 | tail -n1 | sed -e 's/.*by//'  -e 's/commit.*//' -e 's/ //g')
+			echo -n "($branch[ > $ahead_branch($ahead_num)])"
+		elif [[ $(git status 2> /dev/null | tail -n1) = *"nothing to commit"* ]]; then
+			echo -n "($branch*)"
+		elif [[ $(git status 2> /dev/null | tail -n1) = *"nothing added to commit"* ]]; then
+			echo -n "($branch[untracked])"
+		elif [[ $(git status 2> /dev/null | tail -n1) = *"no changes added to commit"* ]]; then
+			echo -n "($branch[nostaged])"
+		elif [[ $(git status 2> /dev/null | head -n5) = *"Changes to be committed"* ]]; then
+			echo -n "($branch[staged])"
+		else
+			echo -n "($branch)"
+		fi
+		echo -n " $commit"
+	fi
+}
+
 # Prompt settings
 if [ "$color_prompt" = yes ]; then
-	PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t\[\e[1;35m\]\n\u@\h\[\e[0;37m\]:\w\[\e[0;32m\]\$'
+	PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t \[\033[0m\]$(git_prompt) \[\e[1;35m\]\n\u@\h\[\e[0;37m\]:\w\[\e[0;31m\]\$\[\e[0;32m\] '
 else
-	PS1='\d\t\n\u@\h:\w\$ '
+	PS1='\d \t $(git_prompt) \n\u@\h:\w\$ '
 fi
 
 unset color_prompt force_color_prompt
 # If the number of directories exceeds the set value, "\w" will be omitted.
 export PROMPT_DIRTRIM=5
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	alias ls='ls --color=auto'
 	alias dir='dir --color=auto'
 	alias vdir='vdir --color=auto'
@@ -128,8 +137,8 @@ alias gaa='git add --all'
 alias gc='git commit -m'
 alias gcl='git clone'
 alias gco='git checkout'
-alias gb='git branch -a'
-alias gb-='git branch'
+alias gb='git branch'
+alias gba='git branch -a'
 alias gbd='git branch -d'
 alias gps='git push'
 alias gpl='git pull'
