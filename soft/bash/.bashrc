@@ -29,6 +29,7 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
+# Git prompt
 function git_prompt() {
 	if [ -e ".git" ]; then
 		git fetch
@@ -173,6 +174,7 @@ alias cp='cp -i'
 alias psa='ps aux'
 alias mkd='mkdir'
 # Useful
+alias sudo='sudo -E'
 alias bk='cd $OLDPWD'
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -192,4 +194,25 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval $(thefuck --alias)
+
+# Func
+function wether() {
+	curl -H "Accept-Language: ja" wttr.in/$1
+}
+
+function wetheren() {
+	curl -H "Accept-Language: en" wttr.in/$1
+}
+
+function mkdd() {
+	mkdir $1 ; cd $_
+}
+
+function pss() {
+	ps aux | grep -E "PID|$1" | grep -v grep
+}
+
+function sc() {
+	grep -E $1 -rl $2
+}
 
