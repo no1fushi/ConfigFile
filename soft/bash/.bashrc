@@ -41,11 +41,14 @@ fi
 
 # Prompt settings
 if [ "$color_prompt" = yes ]; then
-	PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t\[\e[1;35m\]\n\u@\h\[\e[0;34m\]:\w\[\e[0;32m\]\$'
+	PS1='\[\e[1;36m\]\d\[\e[1;33m\] \t\[\e[1;35m\]\n\u@\h\[\e[0;37m\]:\w\[\e[0;32m\]\$'
 else
 	PS1='\d\t\n\u@\h:\w\$ '
 fi
+
 unset color_prompt force_color_prompt
+# If the number of directories exceeds the set value, "\w" will be omitted.
+export PROMPT_DIRTRIM=5
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
