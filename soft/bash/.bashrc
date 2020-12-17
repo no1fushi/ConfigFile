@@ -86,10 +86,11 @@ fi
 umask 022
 
 # less
+alias less='less -g -i -M -R -S -W -F -X --shift 4'
 # Always use less when looking at man
 export PAGER=less
 # Display the file name and number of lines in the status line of less, and what percentage is now
-export LESS='-X -i -P ?f%f:(stdin).  ?lb%lb?L/%L..  [?eEOF:?pb%pb\%..]'
+export LESS='-g -i -M -R -S -W -F -X --shift 4'
 # Display Japanese with less
 export JLESSCHARSET=japanese-ujis
 
@@ -108,8 +109,8 @@ alias edit='vim'
 alias vi='vim'
 alias emacs='emacs -nw'
 alias nano='nano -k -w -i -S'
-vim_version=`vim --version | head -1 | sed 's/^.*\ \([0-9]\)\.\([0-9]\)\ .*$/\1\2/'`
-alias vless='/usr/share/vim/vim${vim_version}/macros/less.sh'
+VIMRUNTIME=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
+alias vless='${VIMRUNTIME}/macros/less.sh'
 # Apt
 alias au='sudo apt update -y'
 alias ag='sudo apt upgrade -y'
@@ -124,7 +125,8 @@ alias gaa='git add --all'
 alias gc='git commit -m'
 alias gcl='git clone'
 alias gco='git checkout'
-alias gb='git branch'
+alias gb='git branch -a'
+alias gb-='git branch'
 alias gbd='git branch -d'
 alias gps='git push'
 alias gpl='git pull'
@@ -156,6 +158,7 @@ alias df='df -h'
 alias mv='mv -i'
 alias cp='cp -i'
 alias psa='ps aux'
+alias mkd='mkdir'
 # Useful
 alias bk='cd $OLDPWD'
 alias ..='cd ..'
