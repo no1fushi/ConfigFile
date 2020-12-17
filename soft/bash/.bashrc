@@ -131,6 +131,7 @@ alias ac='sudo apt clean'
 alias ai='sudo apt install -y'
 alias auu='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove --purge -y && sudo apt clean'
 # Git
+alias gi='git init'
 alias gs='git status'
 alias ga='git add'
 alias gaa='git add --all'
