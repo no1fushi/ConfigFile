@@ -108,83 +108,72 @@ endif
 " Color
 syntax on
 
-" Plugins
-:let g:neobundle_default_git_protocol='https'
-if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
-		if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-			echo "install NeoBundle..."
-			:call system("git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-	endif
+if &compatible
+  set nocompatible
 endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Shougo
+call dein#begin(expand('~/.vim/dein'))
+call dein#add('Shougo/dein.vim')
+call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-sbuppets')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-"----------------------------------------------------------
-" set
-NeoBundle 'tomasr/molokai'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'terryma/vim-multiple-cursors'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'Shougo/neocomplcache.vim'
-
-" snippet
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'no1fushi/mysnippets'
+" Setting
+call dein#add('tomasr/molokai')
+call dein#add('itchyny/lightline.vim')
+call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('scrooloose/nerdtree')
+call dein#add('terryma/vim-multiple-cursors')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('tpope/vim-surround')
 
 " Search
-NeoBundle 'thinca/vim-visualstar'
-NeoBundle 'haya14busa/incsearch.vim'
+call dein#add('thinca/vim-visualstar')
+call dein#add('haya14busa/incsearch.vim')
 
-" gosh
-NeoBundle 'aharisu/vim_goshrepl'
-NeoBundle 'aharisu/vim-gdev'
+" Gosh
+call dein#add('aharisu/vim_goshrepl')
+call dein#add('aharisu/vim-gdev')
 
 " Ruby
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'szw/vim-tags'
-NeoBundle 'marcus/rsense'
+call dein#add('tpope/vim-endwise')
+call dein#add('szw/vim-tags')
+call dein#add('marcus/rsense')
 
 " HTML
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'othree/html5.vim'
-NeoBundle 'hokaccha/vim-html5validator'
+call dein#add('mattn/emmet-vim')
+call dein#add('othree/html5.vim')
 
 " CSS
-NeoBundle 'hail2u/vim-css3-syntax'
+call dein#add('hail2u/vim-css3-syntax')
 
 " JavaScript
-NeoBundle 'jelera/vim-javascript-syntax'
-NeoBundle 'jiangmiao/simple-javascript-indenter'
+call dein#add('jelera/vim-javascript-syntax')
+call dein#add('jiangmiao/simple-javascript-indenter')
 
-"json
-NeoBundle 'elzr/vim-json'
+" JSON
+call dein#add('elzr/vim-json')
 
 " Git
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
+call dein#add('airblade/vim-gitgutter')
+call dein#add('tpope/vim-fugitive')
 
-"----------------------------------------------------------
-call neobundle#end()
-NeoBundleCheck
+" My
+call dein#add('no1fushi/mysnippets')
 
-filetype plugin indent on
+call dein#end()
 
 "---------------------------------------------------------
 " plugins set
 
 " molokai
-if neobundle#is_installed('molokai')
-	colorscheme molokai
-	autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
-	autocmd VimEnter * match FullWidthSpace /　/
-endif
+colorscheme molokai
+autocmd Colorscheme * highlight FullWidthSpace ctermbg=white
+autocmd VimEnter * match FullWidthSpace /　/
 
 set t_Co=256
 syntax enable
@@ -195,117 +184,97 @@ set showmode
 set showcmd
 
 " NERDTree
-if neobundle#is_installed('nerdtree')
-	autocmd StdinReadPre * let s:std_in=1
-	autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-	cnoremap nt! NERDTree
-endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+cnoremap nt! NERDTree
 
 " incsearch.vim
-if neobundle#is_installed('incsearch.vim')
-	map / <Plug>(incsearch-forward)
-endif
+map / <Plug>(incsearch-forward)
 
 " Rsense
-if neobundle#is_installed('rsense')
-	let g:rsenseHome = '/usr/local/lib/rsense-0.3'
-	let g:rsenseUseOmniFunc = 1
-endif
+let g:rsenseHome = '/usr/local/lib/rsense-0.3'
+let g:rsenseUseOmniFunc = 1
 
 " gauche
-if neobundle#is_installed('vim_goshrepl')
-	cnoremap gosh GoshREPLWithBuffer
-endif
+cnoremap gosh GoshREPLWithBuffer
 
 " emmet
-if neobundle#is_installed('emmet')
-	let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
-endif
+let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
 
 " vim-json
-if neobundle#is_installed('vim-json')
-	let g:vim_json_syntax_conceal = 0
-endif
+let g:vim_json_syntax_conceal = 0
 
 " snippet
-if neobundle#is_installed('neosnippet')
-	imap <C-k>	<Plug>(neosnippet_expand_or_jump)
-	smap <C-k>	<Plug>(neosnippet_expand_or_jump)
-	xmap <C-k>	<Plug>(neosnippet_expand_target)
-	if has('conceal')
-		set conceallevel=2 concealcursor=niv
-	endif
-	let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/bundle/mysnippets/snippets/'
+imap <C-k>	<Plug>(neosnippet_expand_or_jump)
+smap <C-k>	<Plug>(neosnippet_expand_or_jump)
+xmap <C-k>	<Plug>(neosnippet_expand_target)
+if has('conceal')
+	set conceallevel=2 concealcursor=niv
 endif
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/bundle/mysnippets/snippets/'
 
 " multiple-cursors
-if neobundle#is_installed('vim-multiple-cursors')
-	let g:multi_cursor_use_default_mapping = 0
-	let g:multi_cursor_start_word_key      = '<C-n>'
-	let g:multi_cursor_select_all_word_key = '<A-n>'
-	let g:multi_cursor_start_key           = 'g<C-n>'
-	let g:multi_cursor_select_all_key      = 'g<A-n>'
-	let g:multi_cursor_next_key            = '<C-n>'
-	let g:multi_cursor_prev_key            = '<C-p>'
-	let g:multi_cursor_skip_key            = '<C-x>'
-	let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
 
-	function! Multiple_cursors_before()
-	  if exists(':NeoCompleteLock')==2
-	    exe 'NeoCompleteLock'
-	  endif
-	endfunction
+function! Multiple_cursors_before()
+  if exists(':NeoCompleteLock')==2
+    exe 'NeoCompleteLock'
+  endif
+endfunction
 
-	function! Multiple_cursors_after()
-	  if exists(':NeoCompleteUnlock')==2
-	    exe 'NeoCompleteUnlock'
-	  endif
-	endfunction
-endif
+function! Multiple_cursors_after()
+  if exists(':NeoCompleteUnlock')==2
+    exe 'NeoCompleteUnlock'
+  endif
+endfunction
 
 " vim-fugitive
-if neobundle#is_installed('vim-fugitive')
-	set statusline+=%{fugitive#statusline()}
-	cnoremap gs! Gstatus
-	cnoremap ga! Gwrite
-	cnoremap gc! Gcommit -m
-	cnoremap gps! Git push
-	cnoremap gpl! Git pull
-	cnoremap gl! Git log
-	cnoremap gco! Git checkout
-	cnoremap gb! Git branch
-	cnoremap gbd! Git branch -d
-	cnoremap gr! Git reset
-	cnoremap grh! Git reset --hard
-	cnoremap gra! Git remote add origin
-endif
+set statusline+=%{fugitive#statusline()}
+cnoremap gs! Gstatus
+cnoremap ga! Gwrite
+cnoremap gc! Gcommit -m
+cnoremap gps! Git push
+cnoremap gpl! Git pull
+cnoremap gl! Git log
+cnoremap gco! Git checkout
+cnoremap gb! Git branch
+cnoremap gbd! Git branch -d
+cnoremap gr! Git reset
+cnoremap grh! Git reset --hard
+cnoremap gra! Git remote add origin
 
 " neocomplcache
-if neobundle#is_installed('neocomplcache.vim')
-	command Ncomp :NeoComplCacheDisable
-	command Ycomp :NeoComplCacheEnable
+command Ncomp :NeoComplCacheDisable
+command Ycomp :NeoComplCacheEnable
 
-	let g:acp_enableAtStartup = 0
-	let g:neocomplcache_enable_at_startup = 1
-	let g:neocomplcache_enable_smart_case = 1
-	let g:neocomplcache_min_syntax_length = 3
-	let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-	let g:neocomplcache_dictionary_filetype_lists = {
-				\ 'default' : ''
-				\ }
+let g:neocomplcache_dictionary_filetype_lists = {
+			\ 'default' : ''
+			\ }
 
-	inoremap <expr><C-g>     neocomplcache#undo_completion()
-	inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
-	inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-	function! s:my_cr_function()
-		return neocomplcache#smart_close_popup() . "\<CR>"
-	endfunction
-	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-	inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-	inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-	inoremap <expr><C-y>  neocomplcache#close_popup()
-	inoremap <expr><C-e>  neocomplcache#cancel_popup()
-endif
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+	return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
