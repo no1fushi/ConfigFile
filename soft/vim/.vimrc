@@ -117,10 +117,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
 call dein#begin(expand('~/.vim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/neosnippet')
-call dein#add('Shougo/neosnippet-sbuppets')
 
 " Setting
 call dein#add('tomasr/molokai')
@@ -166,7 +163,9 @@ call dein#add('tpope/vim-fugitive')
 call dein#add('no1fushi/mysnippets')
 
 call dein#end()
-
+if dein#check_install()
+  call dein#install()
+endif
 "---------------------------------------------------------
 " plugins set
 
@@ -203,15 +202,6 @@ let g:user_emmet_settings = {'variables': {'lang' : 'ja'}}
 
 " vim-json
 let g:vim_json_syntax_conceal = 0
-
-" snippet
-imap <C-k>	<Plug>(neosnippet_expand_or_jump)
-smap <C-k>	<Plug>(neosnippet_expand_or_jump)
-xmap <C-k>	<Plug>(neosnippet_expand_target)
-if has('conceal')
-	set conceallevel=2 concealcursor=niv
-endif
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/bundle/mysnippets/snippets/'
 
 " multiple-cursors
 let g:multi_cursor_use_default_mapping = 0
@@ -250,31 +240,4 @@ cnoremap gbd! Git branch -d
 cnoremap gr! Git reset
 cnoremap grh! Git reset --hard
 cnoremap gra! Git remote add origin
-
-" neocomplcache
-command Ncomp :NeoComplCacheDisable
-command Ycomp :NeoComplCacheEnable
-
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-let g:neocomplcache_dictionary_filetype_lists = {
-			\ 'default' : ''
-			\ }
-
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-	return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
